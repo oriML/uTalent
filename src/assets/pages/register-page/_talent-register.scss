@@ -1,0 +1,17 @@
+.talent-register-page{
+.register-form{
+        display: grid;
+        width: 10%;
+        gap: 10px;
+        margin-bottom: 20px;
+
+
+        input[type=text] {
+            border: 1px rgb(255, 133, 133) solid;
+        }
+        input[type=submit]{
+            width: 50%;
+            background-color: rgb(135, 223, 226);
+        }
+}
+}

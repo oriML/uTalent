@@ -1,0 +1,17 @@
+//basic:
+@import './baiscs/layout';
+@import './baiscs/base';
+
+//Headers & Footers:
+@import './cmps/navbar/navbar';
+@import './cmps/footer/footer';
+
+//cmps:
+@import './cmps/card/cards';
+@import './cmps/categories/categories-cards';
+
+//pages:
+@import './pages/home-page/home-page';
+@import './pages/register-page/navigate-register';
+@import './pages/register-page/consumer-register';
+@import './pages/register-page/talent-register';

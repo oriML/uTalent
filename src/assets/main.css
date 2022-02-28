@@ -1,0 +1,136 @@
+.main-layout {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: minmax(2rem, 1fr) minmax(auto, 1140px) minmax(2rem, 1fr);
+      grid-template-columns: minmax(2rem, 1fr) minmax(auto, 1140px) minmax(2rem, 1fr);
+}
+
+.main-layout > * {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2/3;
+}
+
+.main-layout > *.full {
+  grid-column: 1 / -1;
+}
+
+.main-layout .home-page {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body {
+  font-family: Rubik, sans-serif;
+  margin: 0;
+  background-size: cover;
+  direction: rtl;
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+a:active {
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar_wrapper {
+  background-color: #fc6731;
+  color: wheat;
+  border: 1px solid black;
+}
+
+.navbar_wrapper .menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap-reverse;
+      flex-wrap: wrap-reverse;
+  gap: 2%;
+}
+
+.navbar_wrapper .menu > * {
+  cursor: pointer;
+}
+
+.footer {
+  background-color: #31cdfc;
+  color: wheat;
+  border: 1px solid black;
+}
+
+.categories_cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.categories_cards > * {
+  cursor: pointer;
+  border: 1px solid brown;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.categories_cards .tags_description {
+  color: #1da5a5;
+  direction: ltr;
+  overflow: hidden;
+  width: 100%;
+}
+
+.home-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.consumer-register-page .register-form {
+  display: -ms-grid;
+  display: grid;
+  width: 10%;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.consumer-register-page .register-form input[type=text] {
+  border: 1px #ff8585 solid;
+}
+
+.consumer-register-page .register-form input[type=submit] {
+  width: 50%;
+  background-color: #87dfe2;
+}
+
+.talent-register-page .register-form {
+  display: -ms-grid;
+  display: grid;
+  width: 10%;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.talent-register-page .register-form input[type=text] {
+  border: 1px #ff8585 solid;
+}
+
+.talent-register-page .register-form input[type=submit] {
+  width: 50%;
+  background-color: #87dfe2;
+}
+/*# sourceMappingURL=main.css.map */
