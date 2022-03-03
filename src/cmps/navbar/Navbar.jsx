@@ -1,7 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 
-const Navbar = () => (
+import { useAuth } from '../../hooks/useAuth'
+
+const Navbar = () => {
+    
+    const dispatch = useDispatch();
+    const { logOut } = useAuth();
+    return (
 
     <section className="navbar_wrapper full">
         <div className="main-layout">
@@ -57,7 +64,7 @@ const Navbar = () => (
 
                 <div className="signout_tab">
 
-                    <Link to='/' >
+                    <Link to='/' onClick={()=> dispatch(logOut())} >
                         התנתק
                     </Link>
 
@@ -68,5 +75,6 @@ const Navbar = () => (
     </section>
 
 )
+    }
 
 export default Navbar

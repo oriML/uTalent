@@ -12,6 +12,7 @@ function Card(card) {
             {
                 card?.images?.map((image, index) =>
                     <img
+                        key={image}
                         src={image}
                         alt={"image " + index}
                     />

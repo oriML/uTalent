@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const Card = require('../models/card')
-const User = require('../models/user');
+const Card = require('../models/card.interface')
+const User = require('../models/user.interface');
 
 async function fetchAllFeedCards(){
 
@@ -24,7 +24,7 @@ async function fetchSingleCard(card){
 
 async function insertCardToUser({id, card}){
      
-    const _user = User.findById(id);
+    const _user = await User.findById(id);
 
     const _card = new Card({
         ...card
@@ -47,12 +47,14 @@ async function updateCardOfUser({id, card}){
 
 async function deleteCardFromUser({id, card}){
      
-    const _user = User.findById(id);
-    Card.delete(card.id)
+    const _user = await User.findById(id);
+    await Card.delete(card.id)
 
-    return await _user.update(id,{
+    return await _user.update(
+        id,
+        {
         ..._user,
-        cards: (c) => c.filter(crd => crd.id !== card.id)
+        cards: (c) => c.filter(card => card.id !== card.id)
     })
 
 

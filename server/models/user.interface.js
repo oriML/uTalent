@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 // defines the structure of the document id like to store in db.
 
 const userSchema = new mongoose.Schema({
-    details:{
+
 
         firstName: {
             type: String,
@@ -17,20 +17,31 @@ const userSchema = new mongoose.Schema({
             required: true,
             lowercase: true
         },
-        password: {
+        // password: {
+        //     type: String,
+        //     required: false
+        // },
+        profileImg: {
             type: String,
-            required: true
+            default: null,
+            required: false
         },
-        mobile: String,
-        profileImg: String,
+        mobile: {
+            type: String,
+            min: 10,
+            max: 11,
+            default: -1,
+            required: false
+        },
         age: {
             type: Number,
             min: 18,
-            default: -1
+            default: -1,
+            required: false
         },
         describe: {
             type: String,
-            required: true
+            required: false
         },
         createdAt: {
             type: Date,
@@ -48,7 +59,6 @@ const userSchema = new mongoose.Schema({
             accessToken: { type: String, required: true },
             refreshToken: { type: String, required: true },
         }
-    }
 
 }, { timestamps: true });
 

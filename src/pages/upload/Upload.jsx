@@ -15,7 +15,11 @@ const Upload = () => {
     const onChange = e => {
         console.log("[onChange]",e.target.files[0]);
     }
-
+    
+    const handleUpload = e => {
+        
+    }
+    
     const [files, setFiles] = useState({
         content: {
             title: '',
@@ -87,7 +91,7 @@ const Upload = () => {
                         {
                             ...register("picture2",
                             {
-                                required: true
+                                required: false
                             })
                         }
                         onChange={onChange}
@@ -99,7 +103,7 @@ const Upload = () => {
                         {
                             ...register("picture3",
                             {
-                                required: true
+                                required: false
                             })
                         }
                         onChange={onChange}
@@ -110,7 +114,7 @@ const Upload = () => {
                         {
                             ...register("picture4",
                             {
-                                required: true
+                                required: false
                             })
                         }
                         onChange={onChange}
@@ -121,7 +125,7 @@ const Upload = () => {
                         {
                             ...register("picture5",
                             {
-                                required: true
+                                required: false
                             })
                         }
                         onChange={onChange}
@@ -131,7 +135,7 @@ const Upload = () => {
 
                     <input type="file" name="video" onChange={onChange} />
 
-                        <input type="submit" />
+                        <input type="submit" onClick={handleUpload}/>
 
                  </form>
 

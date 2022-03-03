@@ -1,11 +1,14 @@
 
 ###
+-> server! not client
+- [x] login 
+- [x] logout
+- [x] register
+- [x] delete
 
-- [] login -> server! not client
-- [] logout
-- [] register
-- [] delete
 
+firebase auth - update local on auth
+nodeJS call for data - uppdate local with data
 ###
 
 

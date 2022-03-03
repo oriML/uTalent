@@ -1,33 +1,31 @@
 const mongoose = require('mongoose');
-const User = require('../models/user')
+const User = require('../models/user.interface')
+const admin = require('../config/firebase-config')
 // makes the actual fetch call to db to bring all cards
 // returns the data
 
 async function fetchUser({email}){
-
+    console.log(email)
     return User.find({email})
 }
 
-async function insertUser(user){
-
+async function insertUser({user}){
+    console.log(user)
     const _user = new User({
 
-        details:{
-
-            firstName: user.details.firstName,
-            lastName: user.details.lastName,
-            email: user.details.email,
-            password: user.details.password,// need to be hashed at req
-            mobile: user.details.mobile,
-            describe: user.details.describe,
-            profileImg: user.details.profileImg,
-            age: user.details.age,
-            joinDate: user.details.joinDate,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            // password: user.password,// need to be hashed at req
+            mobile: user.mobile,
+            describe: user.describe,
+            profileImg: user.profileImg,
+            age: user.age,
+            joinDate: user.joinDate,
             cards: [],
             tokensHandler: {
-                accessToken: user.details.tokensHandler?.accessToken,
-                refreshToken: user.details.tokensHandler?.refreshToken,
-            }
+                accessToken: user.tokensHandler?.accessToken,
+                refreshToken: user.tokensHandler?.refreshToken,
         }
 
     })
@@ -36,16 +34,17 @@ async function insertUser(user){
 }
 
 
-async function removeUser({id}){
-    console.log(id)
+async function removeUser({id,uid}){
+    console.log(id, uid)
+    await admin.auth().deleteUser(uid)
 
     return User.findByIdAndDelete(id);
 }
 
-async function updateUser(id,user){
-    console.log(id)
+async function updateUser(user){
+    console.log(user, user._id)
 
-    return User.findByIdAndUpdate(id, user);
+    return User.findByIdAndUpdate(user._id, user);
 }
 
 async function insertCardToUser(user, card){

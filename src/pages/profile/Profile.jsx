@@ -4,13 +4,17 @@ import { useSelector } from 'react-redux'
 import CardsTable from '../../cmps/cards-table/CardsTable';
 
 const userSelector = (state) => {
-    return state.user
+    const userFromLocal = JSON.parse(localStorage.getItem('user'))
+    console.log(userFromLocal);
+    if(userFromLocal)
+        return userFromLocal
+    return state.user.user
 }
 
 const Profile = () => {
 
-    const user = useSelector(userSelector);
-
+    const {user} = useSelector(userSelector);
+    console.log(user)
         return(
 
             <section className="profile">

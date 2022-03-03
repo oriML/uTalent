@@ -8,15 +8,22 @@ import { useAuth } from '../../hooks/'
 
 
 
-const getUserState = (state) => state.user;
+const getUserState = (state) => {
+    const userFromLocal = JSON.parse(localStorage.getItem('user'))
+    console.log(userFromLocal);
+    if(userFromLocal)
+        return userFromLocal
+    return state.user
+}
 
 const Login = () => {
 
     const dispatch = useDispatch();
-
+    const [userPassword, setUserPassword] = useState("")
     const { register, handleSubmit, formState: {errors} } = useForm();
-    const { login } = useAuth();
-    const { isLoading, isLogged } = useSelector(getUserState)
+    const { login,removeUser } = useAuth();
+    const { user } = useSelector(getUserState)
+    const { isLoading, isLogged } = useSelector(getUserState);
 
     console.log(isLoading, isLogged)
 
@@ -67,7 +74,11 @@ const Login = () => {
         </>
 
     :
+    <>
     <h1>Connected!!!!!</h1>
+    <input onChange={ e => setUserPassword(e.target.value)} value={userPassword} type="text" />
+    <input type="submit" value="delete user" onClick={()=> dispatch(removeUser({email:user.email,password:userPassword}))} />
+    </>
 
 
 }

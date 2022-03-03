@@ -1,13 +1,10 @@
 const catchAsync = require('../utils/catchAsync');
 const usersService = require('../services/users.service')
-
+const admin = require('../config/firebase-config')
 // ------ fetch function. Sends the request automatically to custom catch errors function ------
 
 const getUser = catchAsync(async (req, res) => {
-    // ---> call to service to add user
-    // console.log("add user -> ctrlr")
-    // console.log("get-user!",req.body)
-    // res.status(200)
+    // get also the cards its refers to
     await usersService.fetchUser(req.body.user)
     .then(result => {
         console.log(result)
@@ -37,9 +34,7 @@ const getUser = catchAsync(async (req, res) => {
 
 
 const addUser = catchAsync(async (req, res) => {
-    // ---> call to service to add user
-    // console.log("add user -> ctrlr")
-    console.log(req.body)
+
     await usersService.insertUser(req.body)
     .then(result =>   
             res.status(200).json({
@@ -59,9 +54,9 @@ const addUser = catchAsync(async (req, res) => {
 
     
 const editUser = catchAsync(async (req, res) => {
-        // ---> call to service to add user
-        // console.log("add user -> ctrlr")
+
         console.log(req.query)
+    // call also for edit the cards its refers to
         
         await usersService.updateUser(req.query, req.body)
         .then(result =>   
@@ -81,17 +76,18 @@ const editUser = catchAsync(async (req, res) => {
 })        
             
 const deleteUser = catchAsync(async (req, res) => {
-        // ---> call to service to add user
-        // console.log("add user -> ctrlr")
-        console.log(req.query)
-
+// delete its cards also
+    console.log(req.query)
+        // 
         await usersService.removeUser(req.query)
-        .then(result =>   
-                res.status(200).json({
-                    message: "delete-user/successfull",
-                    state: true,
-                    data: result
-                })
+        .then(result =>   {
+
+            res.status(200).json({
+                message: "delete-user/successfull",
+                state: true,
+                data: result
+            })
+        }
         )
         .catch(err =>
                 res.status(500).json({

@@ -3,7 +3,7 @@ import Feed from "./pages/feed/Feed"
 import Homepage from "./pages/homepage/Homepage"
 import Login from "./pages/login/Login"
 import Profile from "./pages/profile/Profile"
-import Register from "./pages/register/Register"
+import TalentRegister from "./pages/register/sub-cmps/TalentRegister"
 import Upload from "./pages/upload/Upload"
 
 export const routes =  [
@@ -30,7 +30,7 @@ export const routes =  [
         },
         {
             path: '/register',
-            component: Register
+            component: TalentRegister
         },
         {
             path: '/profile',
