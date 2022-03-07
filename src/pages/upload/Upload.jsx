@@ -1,46 +1,54 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 // upload is accessable only to registered users
-
+import { uploadProfileAndRefresh } from '../../store/features/uploads'
+import { useEffect } from "react";
+import { refreshLocalUser } from "../../store/features/user";
 
 const Upload = () => {
 
+    const dispatch = useDispatch();
+
+    const [fileToUpload, setFileToUpload] = useState("");
+
+    const fd = new FormData();
+
     const { register, handleSubmit, formState: {errors} } = useForm({ mode: 'onTouched' });
-
     
-    const onSubmit = data => {
-        console.log("[onSubmit]",data);
-
-    }
-    const onChange = e => {
-        console.log("[onChange]",e.target.files[0]);
-    }
-    
-    const handleUpload = e => {
+    const onSubmit = e => {
+        e.preventDefault()
+        // fd.append( 'file', fileToUpload )
+        dispatch(uploadProfileAndRefresh(fileToUpload))
         
     }
+
+    const handleFile = e => {
+        console.log("[onChange]");
+
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setFileToUpload(reader.result)
+        }
+        
+       
+
+    }
+    // useEffect(()=>{console.log(fileToUpload)},[fileToUpload])
     
-    const [files, setFiles] = useState({
-        content: {
-            title: '',
-            description: '',
-        },
-        images: [],
-        video: ''
-    })
-
-
         return(
 
-             <section className="upload-page" onSubmit={handleSubmit(onSubmit)}>
+             <section className="upload-page">
 
                 <h1 className="upload-page-header">
                     ברוך הבא לדף ההעלאות! 
                 </h1>
 
-                 <form className="upload-form" >
+                <form className="upload-form-media" onSubmit={handleSubmit}>
 
-                        <div className="upload-form-content">
+                        {/* <div className="upload-form-content">
         
                              <input
                              type="text"
@@ -68,76 +76,82 @@ const Upload = () => {
                              
                              />
 
+                        </div> */}
 
-
-                        </div>
-
-                        <div className="upload-form-media">
                     <input 
                         type="file"
                         name="picture1"
+                        
                         {
                             ...register("picture1",
                             {
-                                required: true
+                                required: false
                             })
                         }
-                        onChange={onChange}
+                        onChange={handleFile}
+
                         />
 
                     <input 
                         type="file"
                         name="picture2"
+                        
                         {
                             ...register("picture2",
                             {
                                 required: false
                             })
                         }
-                        onChange={onChange}
+                        onChange={handleFile}
+
                         />
 
                     <input 
                         type="file"
                         name="picture3"
+                        
                         {
                             ...register("picture3",
                             {
                                 required: false
                             })
                         }
-                        onChange={onChange}
+                        onChange={handleFile}
+
                         />
                     <input 
                         type="file"
                         name="picture4"
+                        
                         {
                             ...register("picture4",
                             {
                                 required: false
+                                
                             })
                         }
-                        onChange={onChange}
+                        onChange={handleFile}
                         />
+
                     <input 
                         type="file"
                         name="picture5"
+                        
                         {
                             ...register("picture5",
                             {
                                 required: false
                             })
                         }
-                        onChange={onChange}
+                        onChange={handleFile}
                         />
 
-                    </div>
 
-                    <input type="file" name="video" onChange={onChange} />
+                    <input type="file" style={{color: "red"}} name="video" onChange={handleFile} />
 
-                        <input type="submit" onClick={handleUpload}/>
+                    <input type="submit" value={"SEND"} onClick={onSubmit}/>
 
-                 </form>
+                </form>
 
              </section>
 

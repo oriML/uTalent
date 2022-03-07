@@ -1,8 +1,12 @@
-import { Switch, Route } from 'react-router-dom';
-import { routes } from './routes';
+import { useEffect } from 'react';
 
-import { Provider } from 'react-redux'
-import { store } from './store/store'
+import { Switch, Route } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux'
+
+import { routes } from './routes';
+import { setUser } from './store/features/user'
+import { setUserAuth } from './store/features/userAuth'
 
 import Navbar from './cmps/navbar/Navbar';
 import Footer from './cmps/footer/Footer';
@@ -11,9 +15,20 @@ import './assets/main.css';
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    const user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+      console.log('app is on and user isnt gone')
+      dispatch(setUser(user))
+      dispatch(setUserAuth())
+    }
+
+  }, [])
   return (
 
-    <Provider store={store} >
+    
       <section className="App main-layout">
 
         <Navbar />
@@ -26,7 +41,6 @@ const App = () => {
         <Footer />
 
       </section>
-      </Provider>
 
   );
 }

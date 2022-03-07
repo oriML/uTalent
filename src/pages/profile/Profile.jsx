@@ -5,7 +5,7 @@ import CardsTable from '../../cmps/cards-table/CardsTable';
 
 const userSelector = (state) => {
     const userFromLocal = JSON.parse(localStorage.getItem('user'))
-    console.log(userFromLocal);
+    
     if(userFromLocal)
         return userFromLocal
     return state.user.user
@@ -14,7 +14,7 @@ const userSelector = (state) => {
 const Profile = () => {
 
     const {user} = useSelector(userSelector);
-    console.log(user)
+    
         return(
 
             <section className="profile">
@@ -23,7 +23,7 @@ const Profile = () => {
 
                         <div className="profile-photo">
                             {
-                            user?.profileImg &&
+                            user?.profileImg && 
                                 <img
                                 className="profile-user-image"
                                 alt="user-image"

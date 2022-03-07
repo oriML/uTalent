@@ -4,8 +4,8 @@ const admin = require('../config/firebase-config')
 // makes the actual fetch call to db to bring all cards
 // returns the data
 
-async function fetchUser({email}){
-    console.log(email)
+async function fetchUser(email){
+
     return User.find({email})
 }
 
@@ -19,7 +19,7 @@ async function insertUser({user}){
             // password: user.password,// need to be hashed at req
             mobile: user.mobile,
             describe: user.describe,
-            profileImg: user.profileImg,
+            profileImg: null,// first need to upload to cloudinary then to update its location
             age: user.age,
             joinDate: user.joinDate,
             cards: [],
@@ -41,11 +41,13 @@ async function removeUser({id,uid}){
     return User.findByIdAndDelete(id);
 }
 
-async function updateUser(user){
-    console.log(user, user._id)
+async function updateUser(id,x){
+    console.log(x, id)
 
-    return User.findByIdAndUpdate(user._id, user);
+    return User.findByIdAndUpdate(id, x);
 }
+
+
 
 async function insertCardToUser(user, card){
 
@@ -60,5 +62,6 @@ module.exports = {
     insertUser,
     updateUser,
     insertCardToUser,
-    removeUser
+    removeUser,
+
 }

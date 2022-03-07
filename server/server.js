@@ -6,10 +6,16 @@ const mongoose = require('mongoose');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.db, { useNewUrlParser: true, useUnifiedTopology: true})
-    .then( result => 
-        app.listen( port, 
-        () => console.log(`running on server: ${port}`)
+mongoose.connect(
+    process.env.db,
+     { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+     })
+    .then( () => 
+        app.listen(
+            port, 
+            () => console.log(`running on server: ${port} \nconnected to db`)
     )
     )
     .catch( err => console.log(err))

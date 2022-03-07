@@ -10,28 +10,18 @@ import axios from 'axios'
  */
  const url = process.env.REACT_APP_USERS_URL;
 
- const {
-   REACT_APP_GET_USER_URL,
-   REACT_APP_ADD_USER_URL,
-   REACT_APP_UPDATE_USER_URL,
-   REACT_APP_DELETE_USER_URL
- } = process.env;
-
     export const getUser = createAsyncThunk(
     'user/getUser',
     async (user, { dispatch, getState}) => {
         const { userAuth } = getState();
 
-        console.log(user);
-
         if(userAuth.isAuth)
         {   
-        console.log("userAuth.isAuth",userAuth.isAuth);
-        const config = { 
-                user: user,
+            const config = { 
+                params: {email: user.email},
                 headers:{ 'Authorization': 'Bearer ' + userAuth.userFirebaseToken }
                 }
-            return axios.post( url + REACT_APP_GET_USER_URL, config)
+            return axios.get( url, config)
         }
         
         }//async function
@@ -51,7 +41,7 @@ import axios from 'axios'
                     },
                     headers:{ 'Authorization': 'Bearer ' + stsTokenManager.accessToken }
                     }
-                return axios.post( url + REACT_APP_ADD_USER_URL, config)
+                return axios.post( url, config)
             }
             
             }
@@ -64,7 +54,7 @@ import axios from 'axios'
             const config = {
                 params:{ id: params.uid}
             }
-           await axios.put(url + REACT_APP_DELETE_USER_URL, config)
+           await axios.put(url, config)
            .then(res => console.log('success/delete user', res) )
            .catch(err => console.log('failed/delete user',err))
         }
@@ -75,10 +65,12 @@ import axios from 'axios'
         'user/deleteUser',
         async({id, uid}, {dispatch, getState}) => {
             console.log(id,uid)
+            localStorage.removeItem('user')
+
             const config = {
                 params:{ id, uid}
             }
-           await axios.delete(url + REACT_APP_DELETE_USER_URL, config)
+           await axios.delete(url, config)
            .then(res => {
                localStorage.removeItem('user');
               console.log('success/delete user', res)
@@ -97,9 +89,14 @@ export const userSlice = createSlice({
         isLoading: false,
     },
     reducers:{
+        setUser: (state, {payload}) => {
+            state.user = {...payload.user};
+            state.isLogged = true;
+        },
         logoutUser: (state,action) => {
             state.user = null;
             state.isLogged = false;
+            localStorage.removeItem('user')
         },
     },
     extraReducers:{
@@ -114,7 +111,7 @@ export const userSlice = createSlice({
             state.isLoading = false;
             state.isLogged = true;
             console.log(action)
-            state.user = action.payload.data.user[0];
+            state.user = action.payload.data.user;
             localStorage.setItem('user',JSON.stringify(state))
         },
         [getUser.rejected]: (state, action)=>{
@@ -125,6 +122,15 @@ export const userSlice = createSlice({
     },
 })
 
-export const { logoutUser } = userSlice.actions;
+export const { setUser, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;
+
+
+export const refreshLocalUser = () => (dispatch, state) => {
+    try {
+            dispatch(getUser({email: state().user.user.email}))
+    } catch (error) {
+        console.log(error)
+    }
+}

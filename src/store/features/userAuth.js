@@ -1,14 +1,16 @@
 import axios from 'axios'
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { auth } from "../../base";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import  app,{ auth } from "../../base";
 import { createUserWithEmailAndPassword,
   onAuthStateChanged,
- signOut,
- signInWithEmailAndPassword,
- getIdToken
+  signOut,
+  signInWithEmailAndPassword,
+  getIdToken,
+  
  } from 'firebase/auth'
 
-
+import firebase from '../../base'
+ 
 /**
  * 
  * this slice will be charge on user actions for server
@@ -24,7 +26,6 @@ export const authFromFirebase = createAsyncThunk(
 
   }
 )
-
 
 
 export const userAuthSlice = createSlice({
@@ -50,9 +51,11 @@ export const userAuthSlice = createSlice({
     LOGOUT: (state, action) => {
       state.userFirebaseToken = null;
     },
-
-    SET_USER_DATA: (state, { payload }) => {
-      state.userData = { ...state.userData, ...payload.userData };
+    SET_USER_DATA: (state, {payload: {user}}) => {
+      console.log(user)
+      state.userFirebaseToken = user.accessToken;
+      state.userFirebaseId = user.uid;
+      state.isAuth = true;
     },
 
   },
@@ -98,6 +101,17 @@ export const createUser = ({ email, password }) => async (dispatch, state) => {
   };
   dispatch(SET_USER_DATA({ userData }));
 };
+
+export const setUserAuth = () => async (dispatch, state) => {
+  onAuthStateChanged(auth, user => {
+
+    if(user) {
+    dispatch(SET_USER_DATA({user}))
+   }
+   
+  })
+
+}
 
 // The function below is called a selector and allows us to select a value from
 // the state.

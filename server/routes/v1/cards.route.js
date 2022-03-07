@@ -3,17 +3,17 @@ const cardsController = require('../../controllers/cards.controller');
 
 const router = express.Router();
 
-router.get('/get-cards', cardsController.getAllCards);
+// router.get('/all-cards', cardsController.getAllCards);
 
-router.get('/get-filtered-cards', cardsController.getAllFilteredCards);
+// router.get('/filtered-cards', cardsController.getAllFilteredCards);
 
-router.get('/get-card', cardsController.getCard);
+router.get('/', cardsController.getAllCards);// function with parmeters to all cards and filtered
 
-router.post('/add-card', cardsController.addCardToUser);
+router.post('/', cardsController.addCardToUser);
 
-router.put('/edit-card', cardsController.editCardOfUser);
+router.put('/', cardsController.editCardOfUser);
 
-router.delete('/remove-card', cardsController.removeCardFromUser);
+router.delete('/', cardsController.removeCardFromUser);
 
 
 module.exports = router;

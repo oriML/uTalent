@@ -19,7 +19,7 @@ const login = ({email, password}) => async (dispatch, state) => {
         try{
       
           const { user } = await signInWithEmailAndPassword(auth, email, password);
-          console.log(user)
+        
           dispatch(LOGIN({ user: user }));
           dispatch(getUser({accessToken:user.accessToken,email: user.email}))
       
@@ -33,7 +33,6 @@ const logOut = () => async (dispatch, state) => {
         await signOut(auth);//server
         dispatch(LOGOUT());// local
         dispatch(logoutUser())
-        localStorage.removeItem('user')
       };
 
 
