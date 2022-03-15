@@ -27,6 +27,7 @@ body {
   background-size: cover;
   direction: rtl;
   height: 100vh;
+  background-color: #DFE0DF;
 }
 
 a {
@@ -42,11 +43,11 @@ a:active {
   color: #000;
 }
 
-.navbar_wrapper {
+/* .navbar_wrapper {
   background-color: #fc6731;
   color: wheat;
   border: 1px solid black;
-}
+} */
 
 .navbar_wrapper .menu {
   display: -webkit-box;

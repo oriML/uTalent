@@ -6,17 +6,26 @@ import { Provider } from 'react-redux'
 import { store } from './store/store'
 
 import App from './App';
-
+// import { StyledEngineProvider } from '@mui/material/styles';
+// import { StyledEngineProvider } from '@mui/styled-engine-sc'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store} >
 
-    <Router>
-      <App />
-    </Router>
+    {/* <StyledEngineProvider injectFirst> */}
 
-    </Provider>
+      <Provider store={store} >
+
+        <Router>
+
+          <App />
+
+        </Router>
+
+      </Provider>
+
+    {/* </StyledEngineProvider> */}
+
   </React.StrictMode>,
   document.getElementById('root')
 );

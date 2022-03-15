@@ -1,54 +1,74 @@
-//profile should get a props of user details
-import img from '../../utils/user-data/imgs/icons/icons8-finn-48.png'
+
+import { useState } from 'react';
 import { useSelector } from 'react-redux'
+
+import {
+    CardContent,
+} 
+    from '@mui/material';
+
 import CardsTable from '../../cmps/cards-table/CardsTable';
+
+import ProfileImage from './sub_cmps/media_section/Image.profile';
+import ProfileDescription from './sub_cmps/description/Description.profile';
+import ProfileButtons from './sub_cmps/buttons/Buttons.profile';
+
+import * as S from './style';
+import { StyledPage } from '../style/main';
+import ProfileDetails from './sub_cmps/details/Details.profile';
 
 const userSelector = (state) => {
     const userFromLocal = JSON.parse(localStorage.getItem('user'))
-    
+
     if(userFromLocal)
         return userFromLocal
-    return state.user.user
+    return state.user.user?  state.user.user : {user:null}
 }
 
-const Profile = () => {
 
-    const {user} = useSelector(userSelector);
+const Profile = () => {
     
+    const {user} = useSelector(userSelector);
+
+    const [toggleExtraDetailsDisplay, setToggleExtraDetailsDisplay ] = useState(false)
+
+    const handleExtraDetailsToggle = () => {
+        setToggleExtraDetailsDisplay(p => !p)
+    }
         return(
 
-            <section className="profile">
+    <StyledPage className="profile">
+                    <S.Mui_Card>
+
+                        <S.Mui_CardMedia>
+                            <ProfileImage user={user} />
+                        </S.Mui_CardMedia>
+                        
+                      <CardContent>
+                        <ProfileDescription user={user} />                        
+                      </CardContent>
+
+                      <S.Mui_CardActions>
+
+                        <ProfileButtons user={user} handleExtraDetailsToggle={handleExtraDetailsToggle}/>
+                        
+                      </S.Mui_CardActions>
+                    {
+                        !!toggleExtraDetailsDisplay && 
+                            <ProfileDetails
+                                mobile={user?.mobile}
+                                email={user?.email}
+                            />
+
+                    }
                     
-                    <section className="profile-details">
-
-                        <div className="profile-photo">
-                            {
-                            user?.profileImg && 
-                                <img
-                                className="profile-user-image"
-                                alt="user-image"
-                                src={user.profileImg}
-                                width={200}
-                                height={200}
-                                />
-
-                            }
-                        </div>
-
-                        <div className="profile-info">
-                            <p className="profile-info-name">{user?.firstName + " " + user?.lastName}</p>
-                            <p className="profile-info-age">{user?.age}</p>
-                            <p className="profile-info-details">{user?.describe}</p>
-                        </div>
-
-                    </section>
-
-                    <section className="profile-board">
+                    <div className="profile-board">
                             
-                                <CardsTable user={user}/>
-                    </section>
+                                <CardsTable cards={user?.cards}/>
+                    </div>
 
-            </section>
+                    </S.Mui_Card>
+            </StyledPage>
         )    
 }
 

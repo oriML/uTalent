@@ -1,77 +1,72 @@
 import React from "react";
+
 import { useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom"
 
 import { useAuth } from '../../hooks/useAuth'
+
+import * as S from './style'
 
 const Navbar = () => {
     
     const dispatch = useDispatch();
     const { logOut } = useAuth();
+
     return (
 
     <section className="navbar_wrapper full">
-        <div className="main-layout">
-            <nav className="menu">
+        <S.Mui_Navbar>
+            <div className="main-layout">
+                <S.Mui_Toolbar>
 
-                <div className="user_tab">
-
-                    <Link to='/profile'>
+                <S.Mui_Link to='/profile'>
+                    <S.Mui_Button>
                         פרופיל
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
-
-                <div className="home_tab">
-
-                    <Link to='/'>
+                <S.Mui_Link to='/'>
+                    <S.Mui_Button>
                         בית
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
-
-                <div className="upload_tab">
-
-                    <Link to='/upload'>
+                <S.Mui_Link to='/upload'>
+                    <S.Mui_Button>
                         העלאת תוכן
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
-
-                <div className="about_tab">
-
-                    <Link to='/about' >
+                <S.Mui_Link to='/about' >
+                    <S.Mui_Button>
                         קצת עלינו
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
-
-                <div className="signin_tab">
-
-                    <Link to='/register'>
+                <S.Mui_Link to='/register'>
+                    <S.Mui_Button>
                         הירשם
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
-
-                <div className="signin_tab">
-
-                    <Link to='/login'>
+                <S.Mui_Link to='/login'>
+                    <S.Mui_Button>
                         התחבר
-                    </Link>
-                
-                </div>
+                    </S.Mui_Button>
+            
+                </S.Mui_Link>
 
-                <div className="signout_tab">
-
-                    <Link to='/' onClick={()=> dispatch(logOut())} >
+                <S.Mui_Link to='/' onClick={()=> dispatch(logOut())} >
+                    <S.Mui_Button>
                         התנתק
-                    </Link>
+                    </S.Mui_Button>
+                </S.Mui_Link>
 
-                </div>
 
-            </nav>
-        </div>
+                </S.Mui_Toolbar>
+            </div>
+        </S.Mui_Navbar>
     </section>
 
 )

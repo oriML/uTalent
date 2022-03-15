@@ -12,8 +12,6 @@ const Upload = () => {
 
     const [fileToUpload, setFileToUpload] = useState("");
 
-    const fd = new FormData();
-
     const { register, handleSubmit, formState: {errors} } = useForm({ mode: 'onTouched' });
     
     const onSubmit = e => {

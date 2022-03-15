@@ -5,6 +5,7 @@ const cardsService = require('../services/cards.service')
 
 const getAllCards = catchAsync(async (req, res) => {
     // ---> call to service of get cards of req.body.user.email
+    console.log("I'm on cards")
     await cardsService.fetchAllFeedCards()// no arguments needed
     .then( cards => res.status(200).json(cards));
 

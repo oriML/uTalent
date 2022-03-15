@@ -60,7 +60,11 @@ const TalentRegister = () => {
                         {
                             ...register("email",
                             {
-                                required: true
+                                required: true,
+                                pattern: {
+                                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                    message: 'Email format is wrong'
+                                }
                             })
                         }
                         placeholder="אימייל"
@@ -136,9 +140,9 @@ const TalentRegister = () => {
                             ...register("age",
                             {
                                 
-                                minLength: {
+                                
                                     min: 18,
-                                    message: "הגיל חייב להיות מעל 18"},
+                                    message: "הגיל חייב להיות מעל 18",
                             }
                             )}
 
