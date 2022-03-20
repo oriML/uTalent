@@ -2,13 +2,15 @@ import {
     signInWithEmailAndPassword,
     signOut,
     createUserWithEmailAndPassword,
-} from 'firebase/auth';
+}
+from 'firebase/auth';
 
 import { 
     LOGIN,
     LOGOUT,
     CREATE_USER
-} from '../store/features/userAuth'
+}
+from '../store/features/userAuth'
 
 import { auth } from '../base'
 import { getUser, signUpUser,deleteUser,logoutUser } from '../store/features/user';
@@ -20,8 +22,8 @@ const login = ({email, password}) => async (dispatch, state) => {
       
           const { user } = await signInWithEmailAndPassword(auth, email, password);
         
-          dispatch(LOGIN({ user: user }));
-          dispatch(getUser({accessToken:user.accessToken,email: user.email}))
+          await dispatch(LOGIN({ user: user }));
+          await dispatch(getUser({accessToken:user.accessToken,email: user.email}))
       
         }catch(err){
           console.log(err)
@@ -31,8 +33,8 @@ const login = ({email, password}) => async (dispatch, state) => {
     
 const logOut = () => async (dispatch, state) => {
         await signOut(auth);//server
-        dispatch(LOGOUT());// local
-        dispatch(logoutUser())
+        await dispatch(LOGOUT());// local
+        await dispatch(logoutUser())
       };
 
 
@@ -44,7 +46,7 @@ const signUp = (userData) => async (dispatch, state) => {
           const res = await createUserWithEmailAndPassword( auth, email, password );
 
           if(res.user){
-            dispatch(signUpUser({stsTokenManager: res.user.stsTokenManager,userData}))
+            await dispatch(signUpUser({stsTokenManager: res.user.stsTokenManager,userData}))
           }
 
         }catch(err){

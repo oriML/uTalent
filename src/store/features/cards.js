@@ -12,6 +12,8 @@ export const getCards = createAsyncThunk(
     }
     )
 
+    
+
 const initialState = {
     cards: [],
     isLoading: false,
@@ -22,33 +24,18 @@ export const cardsSlice = createSlice({
     initialState,
     reducers:{
         addCard: (state, action) => {
-            // axios.post('add-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-            // state.value.push(action.payload) --> how to work with the reducer, is mutable
             console.log("addCard reducer", "state:", state, "action:", action)
         },
         getCard: (state, action) => {
-            // axios.post('set-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-            // state.value.push(action.payload) --> how to work with the reducer
             console.log("updateCard reducer", "state:", state, "action:", action)
         },
-        // getCards: (state, action) => {
-        //     // axios.post('set-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-        //     // state.value.push(action.payload) --> how to work with the reducer
-        //     console.log("updateCard reducer", "state:", state, "action:", action)
-        // },
         getFilteredCards: (state, action) => {
-            // axios.post('set-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-            // state.value.push(action.payload) --> how to work with the reducer
             console.log("updateCard reducer", "state:", state, "action:", action)
         },
         updateCard: (state, action) => {
-            // axios.post('set-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-            // state.value.push(action.payload) --> how to work with the reducer
             console.log("updateCard reducer", "state:", state, "action:", action)
         },
         deleteCard: (state, action) => {
-            // axios.post('remove-card-url').then(res=> res.status(200).json()).catch(err => res.status(500))
-            // state.value.push(action.payload) --> how to work with the reducer
             console.log("deleteCard reducer", "state:", state, "action:", action)
         },
 
@@ -65,6 +52,7 @@ export const cardsSlice = createSlice({
             console.log(action)
             state.isLoading = false;
         },
+
     }
 
 })

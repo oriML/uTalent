@@ -7,12 +7,8 @@ function ProfileDescription({user}) {
   return (
     <S.DetailsWrapper>
 
-      <S.Mui_Typography sx={{ fontSize: 14 }} color="text.primary" gutterBottom>
-      {user?.firstName + " " + user?.lastName}
-      </S.Mui_Typography>
-
-      <S.Mui_Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {user?.age}
+      <S.Mui_Typography fSize="2rem" color="text.primary" gutterBottom>
+        {user?.firstName + " " + user?.lastName} 
       </S.Mui_Typography>
 
       <S.Mui_Typography variant="body2">

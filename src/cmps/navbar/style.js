@@ -21,7 +21,7 @@ export const Mui_Navbar = styledMui(AppBar, {
 })`
     position: static;
     background-color: #F08E00;
-
+    margin-bottom: 1rem;
 `;
 
 export const Mui_Toolbar = styledMui(Toolbar)`

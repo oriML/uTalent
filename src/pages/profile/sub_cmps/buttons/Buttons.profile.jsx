@@ -9,10 +9,10 @@ function ProfileButtons({user, handleExtraDetailsToggle}) {
     
       <S.Mui_Button size="small" onClick={handleExtraDetailsToggle}>לחץ לפרטי התקשרות</S.Mui_Button>
       
-      <S.Mui_Button size="small" Bcolor="red">ערוך פרופיל</S.Mui_Button>
-    
+      <S.Mui_Button size="small">ערוך פרופיל</S.Mui_Button>
+      <S.Mui_Button size="small" bColor="#F46156">מחק פרופיל</S.Mui_Button>
     </S.ButtonsWrapper>
   )
 }
 
-export default ProfileButtons
+export default ProfileButtons;

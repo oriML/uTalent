@@ -10,7 +10,7 @@ export const StyledPage = styledMui(Paper,{
     slot: 'paper'
 })`
     display: flex;
-    margin: 1rem;
+    // margin-top: 1rem;
     width: 100%;
     height: 100vh;
     max-height: 100vh;

@@ -16,7 +16,7 @@ export const Mui_Button = styledMui(Button,{
 })`
     font-weight: bold;
     color: #402E32;
-    background-color: ${({Bcolor}) => Bcolor? Bcolor: '#F08E00 '};
+    background-color: ${({bColor}) => bColor? bColor: '#F08E00 '};
     padding: .5rem;
 `
 

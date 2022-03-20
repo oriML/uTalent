@@ -8,18 +8,18 @@ function ProfileImage({user}) {;
     <S.MediaCardWrapper>
       
       <S.Img
-        img={user.profileImg} 
-        altImg={user.firstName + " profile"}
+        img={user?.profileImg} 
+        altImg={user?.firstName + " profile"}
       />
 
-    <div>
+    {/* <div>
         <IconButton>
             Edit
         </IconButton>
             <IconButton>
             Add
         </IconButton>
-    </div>
+    </div> */}
 
     </S.MediaCardWrapper>
   )

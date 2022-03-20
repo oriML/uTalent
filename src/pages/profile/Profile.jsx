@@ -60,12 +60,8 @@ const Profile = () => {
                                 email={user?.email}
                             />
 
-                    }
-                    
-                    <div className="profile-board">
-                            
-                                <CardsTable cards={user?.cards}/>
-                    </div>
+                    }                            
+                            <CardsTable cards={user?.cards}/>
 
                     </S.Mui_Card>
             </StyledPage>
