@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.post('/profile', uploadsController.uploadProfileOfUser);
 
+router.post('/card', uploadsController.uploadCardOfUser);
+
 router.post('/images', uploadsController.uploadCardImages);
 
 router.post('/video', uploadsController.uploadCardVideo);

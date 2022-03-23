@@ -1,6 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
-const cloudinaryService = require('../services/cloudinary.service');
 const usersService = require('../services/users.service');
+const cardsService = require('../services/cards.service');
+const cloudinaryService = require('../services/cloudinary.service');
 
 const uploadProfileOfUser = catchAsync( async (req, res) => {
 
@@ -23,6 +24,24 @@ const uploadProfileOfUser = catchAsync( async (req, res) => {
 
     // await cloudinaryService.uploadProfileImageOfUser(req.body)
 })
+
+
+const uploadCardOfUser = catchAsync(async (req, res) => {
+
+    const id = req.query.id;
+    const dataCard = req.body.data
+    const images = await cloudinaryService.uploadImages(id, dataCard.images)
+
+    const card = {...dataCard, ["images"]: images};
+
+    await cardsService.insertCardToUser(id, card)// sends 2 arguments -> user id & card id
+    .then(result => {
+        res.status(200).json({...result});
+    })
+    .catch( err => console.log(err))
+    
+});
+
 
 const uploadCardImages = async () => {
 
@@ -47,6 +66,7 @@ const removeCardVideo = async () => {
 
 module.exports = {
     uploadProfileOfUser,
+    uploadCardOfUser,
     uploadCardImages,
     uploadCardVideo,
     removeProfileOfUser,

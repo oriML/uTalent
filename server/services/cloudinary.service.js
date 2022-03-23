@@ -1,6 +1,6 @@
 const { cloudinary } = require('../config/cloudinary')
 
-async function uploadProfileImageOfUser(fileStr, id){
+async function uploadProfileImageOfUser(id, fileStr){
     
     return cloudinary.uploader.upload(fileStr, {
         public_id: `${id}_profile`,
@@ -34,9 +34,30 @@ async function getVideo(){
 }
 
 
-async function uploadImages(){
+async function uploadImages(id, images){
     
-    return
+    let urls = []
+
+    try{
+        
+    for (const image of images) {
+        
+        urls.push(
+            await cloudinary.uploader.upload(image.src, {
+            public_id: `${id}_image:${image.title}`,
+            upload_preset: 'dev_setups',
+            use_filename: true,
+            folder: `user_${id}`
+        })
+        .then(res => res)
+        .catch(err => console.log(err))
+        )
+    }
+    
+    }catch(err){
+        throw new Error(err)
+    }
+    return urls
 }
 
 async function getImages(){

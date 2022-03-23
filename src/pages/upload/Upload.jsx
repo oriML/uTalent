@@ -49,18 +49,12 @@ const Upload = () => {
 
                     <input 
                         type="file"
-                        name="picture1"
-                        
-                        {
-                            ...register("picture1",
-                            {
-                                required: false
-                            })
-                        }
+                        name="profileImg"
+                        {...register("profileImg",{required: false})}
                         onChange={handleFile}
 
                         />
-
+                        
                     {/* <input type="file" name="video" onChange={handleFile} /> */}
 
                     <input type="submit" value={"עדכן תמונה"} onClick={onSubmit}/>

@@ -13,8 +13,10 @@ import { getUser } from "./user";
 
  const {
     REACT_APP_UPLOADS_PROFILE,
+    REACT_APP_UPLOADS_CARD,
     REACT_APP_UPLOADS_IMAGES,
     REACT_APP_UPLOADS_VIDEO,
+    REACT_APP_CARDS_URL,
  } = process.env;
 
 export const uploadProfileImage = createAsyncThunk(
@@ -48,7 +50,7 @@ export const uploadProfileImage = createAsyncThunk(
 
 export const uploadCardOfUser = createAsyncThunk(
         'uploads/uploadCardOfUser',
-        async ( file, { dispatch, getState}) => {
+        async ( card, { dispatch, getState}) => {
     
             const { userAuth,user } = getState();
     
@@ -64,9 +66,11 @@ export const uploadCardOfUser = createAsyncThunk(
                     },
                     params: {id: user.user._id},
                 }        
+                console.log(url + REACT_APP_UPLOADS_CARD)
                 return axios.post( 
-                    url + REACT_APP_UPLOADS_IMAGES,
-                    JSON.stringify({data: file}),
+                    url + REACT_APP_UPLOADS_CARD,
+                    // JSON.stringify({data: card}),
+                    {data: card},
                     config
                 )
             }

@@ -25,12 +25,12 @@ const cardSchema = new Schema({
         required: true
     },
     images: {
-        type: [String],
+        type: [Object],
         required: true
     },
-    video: {
-        type: String
-    },
+    // video: {
+    //     type: String
+    // },
 
 }, { timestamps: true });
 

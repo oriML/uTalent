@@ -22,19 +22,21 @@ async function fetchSingleCard(card){
     return Card.findOne(card.id)
 }
 
-async function insertCardToUser({id, card}){
+async function insertCardToUser(id, card){
      
-    const _user = await User.findById(id);
+    const { _id } = await User.findById(id);
 
     const _card = new Card({
-        ...card
+        ...card,
+        userId: _id
     })
+    
     await _card.save();
 
-    return _user.update(id,{
-        ..._user,
-        cards: (c) => [...c, _card.id]
-    })
+    return User.updateOne(
+        { _id: id},
+        {$push: {cards: _card._id}},
+    )
 
 
 }
