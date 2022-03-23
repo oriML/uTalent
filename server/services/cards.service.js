@@ -22,13 +22,18 @@ async function fetchSingleCard(card){
     return Card.findOne(card.id)
 }
 
+async function getCardsOfUser(cardsIds){
+
+    return Card.find({ '_id': { $in: [...cardsIds] } })
+}
+
 async function insertCardToUser(id, card){
      
-    const { _id } = await User.findById(id);
+    // const { _id } = await User.findById(id);
 
     const _card = new Card({
         ...card,
-        userId: _id
+        userId: id
     })
     
     await _card.save();
@@ -67,6 +72,7 @@ module.exports ={
     fetchAllFeedCards,
     fetchSingleCard,
     fetchAllFilteredFeedCards,
+    getCardsOfUser,
     insertCardToUser,
     updateCardOfUser,
     deleteCardFromUser

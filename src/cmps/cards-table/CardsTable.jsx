@@ -1,14 +1,23 @@
 import React from 'react'
 import Card from '../card/Card'
+import * as S from './style'
 
 function CardsTable(user) {
   
   return (
-    <div className='cards-table'>
+    <S.CardsTable className='cards-table'>
+      {
+        user?.cards?.length > 0 && <S.NavWrapper >
+        <div>נושא</div>
+        <div>תיאור</div>
+        <div>תגיות</div>
+        <div>תמונות</div>
+      </S.NavWrapper>
+      }
     {
-      user?.cards?.map(card => <Card card={card} />)
+      user?.cards?.map(card => <Card key={card._id} card={card} />)
     }
-    </div>
+    </S.CardsTable>
   )
 }
 

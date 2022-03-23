@@ -7,7 +7,7 @@ function ProfileDescription({user}) {
   return (
     <S.DetailsWrapper>
 
-      <S.Mui_Typography fSize="2rem" color="text.primary" gutterBottom>
+      <S.Mui_Typography fsize="2rem" color="text.primary" gutterBottom>
         {user?.firstName + " " + user?.lastName} 
       </S.Mui_Typography>
 

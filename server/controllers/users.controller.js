@@ -1,5 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const usersService = require('../services/users.service')
+const cardsService = require('../services/cards.service')
 const cloudinaryService = require('../services/cloudinary.service')
 const admin = require('../config/firebase-config')
 // ------ fetch function. Sends the request automatically to custom catch errors function ------
@@ -8,26 +9,12 @@ const admin = require('../config/firebase-config')
 
 const getUser = catchAsync(async (req, res) => {
     // get also the cards its refers to
+    
     const { email } = req.query;
-    console.log(email)
-    // get also the profile img of user
-    await usersService.fetchUser(email)
-    .then(async result => {
-        if(result.length>0){
-            const user = {...result[0]._doc}
-            console.log(user)
 
-            // const profileImg = await cloudinaryService.getProfileImageOfUser(user._id)
-            // .then(res => console.log(res))
-            // .catch(err => console.log(err))
-
-
-            res.status(200).json({
-                message: "get-user/successfull",
-                status: true,
-                user: {...user}//, profileImg: profileImg}
-            })
-        }
+    const user = await usersService.fetchUser(email)
+    .then(result => {
+        if(result.length>0) return {...result[0]._doc}
         else
         res.status(404).json({
             message: "get-user/failed",
@@ -43,6 +30,13 @@ const getUser = catchAsync(async (req, res) => {
         })
     }
     )
+    const urls = await cardsService.getCardsOfUser(user.cards)
+
+    res.status(200).json({
+        message: "get-user/successfull",
+        status: true,
+        user: { ...user, ["cards"]: urls}
+    })
 
 });
 

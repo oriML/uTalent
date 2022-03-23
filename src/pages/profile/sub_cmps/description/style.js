@@ -12,7 +12,7 @@ export const Mui_Typography = styledMui(Typography,{
     slot: "wrapper"
 })`
     font-style: italic;
-    font-size: ${({fSize}) => fSize? fSize : '1.5rem'} !important;
+    font-size: ${({fsize}) => fsize? fsize : '1.5rem'} !important;
     color: #524438;
     // border: 1px #B9A89B solid;
     border-radius: 10px;
