@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
    
 import axios from 'axios'
-import { getUser } from "./user";
+import { getUser } from "./user/user";
 
 /**
  * 
@@ -23,7 +23,7 @@ export const uploadProfileImage = createAsyncThunk(
     'uploads/uploadProfileImage',
     async ( file, { dispatch, getState}) => {
 
-        const { userAuth,user } = getState();
+        const { userAuth, user } = getState();
 
         if(userAuth.isAuth)
         {   

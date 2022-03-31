@@ -1,26 +1,23 @@
-import { IconButton } from '@mui/material'
-import React from 'react'
+import React,{useState} from 'react'
+import { useDispatch } from 'react-redux';
+import useUser from '../../../../hooks/useUser'
+
 import * as S from './style'
 
-function ProfileImage({user}) {;
+function ProfileImage({user}) {
+
+  const dispatch = useDispatch();
+  const { updateUserInClient } = useUser();
 
   return (
     <S.MediaCardWrapper>
-      
-      <S.Img
-        img={user?.profileImg} 
-        altImg={user?.firstName + " profile"}
-      />
 
-    {/* <div>
-        <IconButton>
-            Edit
-        </IconButton>
-            <IconButton>
-            Add
-        </IconButton>
-    </div> */}
-
+            <S.Img
+              key={user?.profileImg + new Date()}
+              src={user?.profileImg}
+              alt={user?.firstName + " profile"}
+            />
+     
     </S.MediaCardWrapper>
   )
 }

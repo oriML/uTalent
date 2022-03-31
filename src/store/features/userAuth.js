@@ -37,20 +37,23 @@ export const userAuthSlice = createSlice({
   },
   reducers: {
 
-    LOGIN: (state, { payload }) => {
-      state.userFirebaseToken = payload.user.accessToken;
-      state.userFirebaseId = payload.user.uid;
+    setUserAuthData: (state, { payload: {user} }) => {
+      state.userFirebaseToken = user.accessToken;
+      state.userFirebaseId = user.uid;
       state.isAuth = true;
     },
 
-    CREATE_USER: (state, { payload }) => {
-      state.userFirebaseToken = payload.user.accessToken;
+    CREATE_USER: (state, { payload: {user} }) => {
+      state.userFirebaseToken = user.accessToken;
       state.isAuth = true;
     },
 
     LOGOUT: (state, action) => {
       state.userFirebaseToken = null;
+      state.userFirebaseId = null;
+      state.isAuth = false;
     },
+    
     SET_USER_DATA: (state, {payload: {user}}) => {
       console.log(user)
       state.userFirebaseToken = user.accessToken;
@@ -64,8 +67,8 @@ export const userAuthSlice = createSlice({
     [authFromFirebase.pending]: (state, action) => {
 
     },
-    [authFromFirebase.fulfilled]: (state, action) => {
-      state.userFirebaseToken = action.payload.user.accessToken
+    [authFromFirebase.fulfilled]: (state, {payload: {user}}) => {
+      state.userFirebaseToken = user.accessToken
       state.isAuth = true;
     },
     [authFromFirebase.rejected]: (state, action)=>{
@@ -76,8 +79,7 @@ export const userAuthSlice = createSlice({
 });
 
 export const {
-  SET_INITIALIZED,
-  LOGIN,
+  setUserAuthData,
   LOGOUT,
   SET_USER_DATA,
   CREATE_USER,

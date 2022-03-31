@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 
 import { routes } from './routes';
-import { setUser } from './store/features/user'
+import { setUser } from './store/features/user/user'
 import { setUserAuth } from './store/features/userAuth'
 import { getCards } from './store/features/cards';
 

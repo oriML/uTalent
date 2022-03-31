@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addCard } from '../store/features/cards'
-import { refreshLocalUser } from '../store/features/user';
+import { refreshLocalUser } from '../store/features/user/user';
 
 function useCards() {
 

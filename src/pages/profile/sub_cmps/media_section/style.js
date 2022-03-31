@@ -15,11 +15,16 @@ export const MediaCardWrapper = styled.section`
 `
 
 export const Img = styled.img.attrs(props => ({
-    src: props.img,
-    alt: props.altImg
+    src: props.src,
+    key: props.key,
+    alt: props.alt
 }))`
     border-radius: 50%;
     width: 200px;
     height: 200px;
     // border: 1px solid black;
+`
+
+export const bgImg = styled.div`
+    background-image: url('${props => props.img}');
 `

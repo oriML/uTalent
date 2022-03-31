@@ -6,35 +6,52 @@ import {
 from 'firebase/auth';
 
 import { 
-    LOGIN,
+    setUserAuthData,
     LOGOUT,
     CREATE_USER
 }
 from '../store/features/userAuth'
 
+
+import { getUser, signUpUser,deleteUser,logoutUser } from '../store/features/user/user';
+
 import { auth } from '../base'
-import { getUser, signUpUser,deleteUser,logoutUser } from '../store/features/user';
+import useLocalStorage from './useLocalStorage';
 
 export const useAuth = () => {
 
+  const { saveUserInLS, removeUserfromLS } = useLocalStorage();
+
 const login = ({email, password}) => async (dispatch, state) => {
         try{
-      
+          
+          // check auth of user in firebase users db
           const { user } = await signInWithEmailAndPassword(auth, email, password);
         
-          await dispatch(LOGIN({ user: user }));
-          await dispatch(getUser({accessToken:user.accessToken,email: user.email}))
+          // set in state user auth details
+          // fb tokens
+          // fb id
+          await dispatch(setUserAuthData({user}))
+
+          // fetching user details from server and db
+          await dispatch(getUser({email: user.email}))
+
+          // save user in local storage
+          dispatch(saveUserInLS())
       
         }catch(err){
+          //dispatch(SET_ERROR)
           console.log(err)
         }
       };
 
     
 const logOut = () => async (dispatch, state) => {
-        await signOut(auth);//server
-        await dispatch(LOGOUT());// local
-        await dispatch(logoutUser())
+        await signOut(auth);// fb server
+        await dispatch(LOGOUT());// auth details
+        await dispatch(logoutUser()); // user details
+        
+        removeUserfromLS();
       };
 
 
@@ -68,3 +85,12 @@ const removeUser = (user) => async (dispatch, state) => {
     
 return { login, logOut, signUp, removeUser }
 }
+
+/**
+ * user wants to login. Event: login button pressed after details
+ * -> go to auth service: Login function in firebase(useAuth hook(fb services)) to check auth
+ * --> true:
+ * -> go to user service: Login function in Node.js server(user reducer(async action)) to bring user details
+ * --> details fetched (saved in user state):
+ * -> go to localStorage reducer and save user
+ */

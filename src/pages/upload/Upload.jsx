@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 // upload is accessable only to registered users
 import { uploadProfileAndRefresh } from '../../store/features/uploads'
 
-import { refreshLocalUser } from "../../store/features/user";
+import { refreshLocalUser } from "../../store/features/user/user";
 
 import CardsUpload from "./sub_cmps/cards/cards/card/card.upload";
 
