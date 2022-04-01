@@ -1,18 +1,22 @@
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getCards } from "../../store/features/cards";
+import { getCards } from "../../store/features/cards/cards";
 
-import { Cards } from "./cards";
+import { Cards } from "./sub_cmps/cards";
 import FeedNavbar from "../../cmps/feed-navbar/FeedNavbar";
 import { useSelector } from "react-redux";
 
-const cardsSelector = state => state.cards;
+const cardsSelector = state => {
+
+    const cards = JSON.parse(localStorage.getItem('cards'));
+    
+    return cards? cards : state.cards;
+
+    };
 
 
 const Feed = () => {
     
-    const dispatch = useDispatch();
-
     const { cards } = useSelector(cardsSelector)
 
     const { _category } = useParams();
@@ -25,9 +29,7 @@ const Feed = () => {
                 </div>
 
                 <div className="feed-cards">
-
-                    <Cards category={_category} />
-
+                    <Cards cards={cards} category={_category} />
                 </div>
 
             </section>

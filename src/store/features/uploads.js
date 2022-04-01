@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
    
 import axios from 'axios'
+import useLocalStorage from "../../hooks/useLocalStorage";
 import { getUser } from "./user/user";
 
 /**
@@ -67,7 +68,7 @@ export const uploadCardOfUser = createAsyncThunk(
                     params: {id: user.user._id},
                 }        
                 console.log(url + REACT_APP_UPLOADS_CARD)
-                return axios.post( 
+                return await axios.post( 
                     url + REACT_APP_UPLOADS_CARD,
                     // JSON.stringify({data: card}),
                     {data: card},
@@ -120,8 +121,11 @@ export default uploadsSlice.reducer;
 
 export const uploadProfileAndRefresh = (file) => async (dispatch, state) =>{
     try {
+        const { saveUserInLS } = useLocalStorage();
+
         await dispatch(uploadProfileImage(file))
-        await dispatch(getUser({email:state().user.user.email}))
+        await dispatch(getUser({email: state().user.user.email}))
+        dispatch(saveUserInLS());
 
     } catch (error) {
         console.log(error)

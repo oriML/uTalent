@@ -5,10 +5,13 @@ import { useForm } from 'react-hook-form'
 
 import { uploadCardOfUser } from '../../../../../../store/features/uploads';
 import { useEffect } from 'react';
+import useLocalStorage from '../../../../../../hooks/useLocalStorage';
 
 const CardsUpload = () => {
 
   const dispatch = useDispatch();
+
+  const { saveUserInLS } = useLocalStorage();
 
   const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -24,9 +27,11 @@ const CardsUpload = () => {
   const [images, setImages] = useState([]);
   
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
       // e.preventDefault()
-      dispatch(uploadCardOfUser({...newCard, images}))
+      await dispatch(uploadCardOfUser({...newCard, images}))
+      // middleware to upload and re-save user after serverupdate
+            dispatch(saveUserInLS());
       
   }
 

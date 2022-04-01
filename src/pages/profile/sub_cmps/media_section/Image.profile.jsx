@@ -4,7 +4,7 @@ import useUser from '../../../../hooks/useUser'
 
 import * as S from './style'
 
-function ProfileImage({user}) {
+function ProfileImage({img, firstName}) {
 
   const dispatch = useDispatch();
   const { updateUserInClient } = useUser();
@@ -13,9 +13,9 @@ function ProfileImage({user}) {
     <S.MediaCardWrapper>
 
             <S.Img
-              key={user?.profileImg + new Date()}
-              src={user?.profileImg}
-              alt={user?.firstName + " profile"}
+              key={img + new Date()}
+              src={img}
+              alt={firstName + " profile"}
             />
      
     </S.MediaCardWrapper>

@@ -12,19 +12,15 @@ const uploadProfileOfUser = catchAsync( async (req, res) => {
         
         const id = req.query.id;
         const fileStr = req.body.data;
-        
         let profile = "";
         
         await cloudinaryService.uploadProfileImageOfUser(id, fileStr)
-        .then( result => {
-            profile = result.url
-            console.log(profile)
-        })
-        .catch(err => res.status(500).json({error: `Error: ${err.message}`}))
+        .then( result => profile = result.url)
+        .catch(err => res.status(500).json({ error: err.error }))
 
         await usersService.updateUser(id, { profileImg: profile})
         .then( result => res.json({message: result}))
-        .catch(err => res.status(500).json({error: `Error: ${err.message}`}))
+        .catch(err => res.status(500).json({error: err.error }))
 
     // await cloudinaryService.uploadProfileImageOfUser(req.body)
 })

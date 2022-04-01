@@ -18,11 +18,11 @@ import { StyledPage } from '../style/main';
 import ProfileDetails from './sub_cmps/details/Details.profile';
 
 const userSelector = (state) => {
-    const userFromLocal = JSON.parse(localStorage.getItem('user'))
+    // const userFromLocal = JSON.parse(localStorage.getItem('user'))
 
-    if(userFromLocal)
-        return userFromLocal
-    return state.user.user?  state.user.user : {user:null}
+    // if(userFromLocal)
+    //     return userFromLocal
+    return state.user?  state.user : {user:null}
 }
 
 
@@ -41,7 +41,7 @@ const Profile = () => {
                     <S.Mui_Card>
 
                         <S.Mui_CardMedia>
-                            <ProfileImage user={user} />
+                            <ProfileImage img={user?.profileImg} firstName={user?.firstName} />
                         </S.Mui_CardMedia>
                         
                       <CardContent>

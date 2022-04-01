@@ -1,14 +1,14 @@
 
 import CategoriesCards from "./sub_cmps/CategoriesCards"
 
-const Start = () => {
+const UserStartPage = ({user}) => {
     return(
-    <section className="startPage">
-        <h2>ברוך הבא!</h2>
+    <section className="userStartPage">
+        <h2>ברוך הבא {user.firstName}!</h2>
         <p>בחר תחום</p> 
         <CategoriesCards />
     </section>
     )
 }
 
-export default Start
+export default UserStartPage

@@ -1,6 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import userReducer from './features/user/user'
-import cardsReducer from './features/cards'
+import cardsReducer from './features/cards/cards'
 import userAuthReducer from './features/userAuth'
 import uploadsReducer from './features/uploads'
 import uiReducer from './features/ui'

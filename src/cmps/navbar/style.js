@@ -52,6 +52,7 @@ export const Mui_Button = styledMui(Button, {
     slot: 'button'
 })`
     font-size: 1.1rem;
+    text-transform: none;
     padding: 1rem 1rem;
     margin: auto .4rem;
     background-color: #F08E00;

@@ -32,6 +32,12 @@ const Navbar = () => {
                     </S.Mui_Button>
                 </S.Mui_Link>
 
+                <S.Mui_Link to='/feed'>
+                    <S.Mui_Button>
+                        uTalent
+                    </S.Mui_Button>
+                </S.Mui_Link>
+
                 <S.Mui_Link to='/upload'>
                     <S.Mui_Button>
                         העלאת תוכן
