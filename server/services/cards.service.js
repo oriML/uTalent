@@ -28,8 +28,6 @@ async function getCardsOfUser(cardsIds){
 }
 
 async function insertCardToUser(id, card){
-     
-    // const { _id } = await User.findById(id);
 
     const _card = new Card({
         ...card,

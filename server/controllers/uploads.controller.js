@@ -30,8 +30,8 @@ const uploadCardOfUser = catchAsync(async (req, res) => {
 
     const id = req.query.id;
     const dataCard = req.body.data
-    const images = await cloudinaryService.uploadImages(id, dataCard.images)
-
+    const _images = await cloudinaryService.uploadImages(id, dataCard.images)
+    const images = _images.reduce((prev,curr)=>{ return [...prev, curr.url] },[])
     const card = {...dataCard, ["images"]: images};
 
     await cardsService.insertCardToUser(id, card)// sends 2 arguments -> user id & card id

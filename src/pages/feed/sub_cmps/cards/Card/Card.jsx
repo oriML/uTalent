@@ -27,7 +27,7 @@ export const Card = ({card}) => (
             
             {
                 card?.images?.map(
-                    image => <img key={image.url} src={image?.url}/>
+                    url => <img key={url} src={url}/>
             )
             }
 

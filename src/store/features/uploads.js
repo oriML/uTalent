@@ -67,7 +67,7 @@ export const uploadCardOfUser = createAsyncThunk(
                     },
                     params: {id: user.user._id},
                 }        
-                console.log(url + REACT_APP_UPLOADS_CARD)
+                
                 return await axios.post( 
                     url + REACT_APP_UPLOADS_CARD,
                     // JSON.stringify({data: card}),
