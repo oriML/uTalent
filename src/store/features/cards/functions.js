@@ -7,20 +7,22 @@ export const asyncCardsFunctions = {
 
         getCards:
 
-        async function(){
-            //we want it to work for all 
-            return axios.get(url)
+        async function(i, {dispatch, getState}){
 
-            // const { userAuth } = getState();
+            const { userAuth } = getState();
     
-            // if(userAuth.isAuth)
-            //     {
-            //     const { userAuth } = getState();
-            //     const config = {
-            //         headers:{ 'Authorization': 'Bearer ' + userAuth.userFirebaseToken }
-            //     }
-            //    return axios.get(url, config)
-            //     }
+            if(userAuth.isAuth)
+                {
+                const { userAuth } = getState();
+                const config = {
+                    headers:{ 'Authorization': 'Bearer ' + userAuth.userFirebaseToken }
+                }
+               return axios.get(url, config)
+                }
+            
+            const unloggedUrl = process.env.REACT_APP_UNLOGGED_CARDS_URL;
+                
+            return axios.get(unloggedUrl)
         },
 
         getFilteredCards:

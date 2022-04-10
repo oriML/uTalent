@@ -9,6 +9,11 @@ async function fetchUser(email){
     return User.find({email})
 }
 
+async function fetchUserById(id){
+
+    return User.findById(id)
+}
+
 async function insertUser({user}){
     console.log(user)
     const _user = new User({
@@ -59,6 +64,7 @@ async function insertCardToUser(user, card){
 
 module.exports = {
     fetchUser,
+    fetchUserById,
     insertUser,
     updateUser,
     insertCardToUser,

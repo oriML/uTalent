@@ -1,4 +1,5 @@
 import React from "react";
+
 import * as S from "./style";
 
 /**
@@ -6,7 +7,10 @@ import * as S from "./style";
  * renders at Cards.jsx by filter of the cardnames.
  */
 
-export const Card = ({card}) => (
+export const Card = ({card}) => { 
+
+    
+    return(
 
     <S.CardContainer className="card-wrapper">
         
@@ -20,6 +24,16 @@ export const Card = ({card}) => (
                 {card?.description}
             </p>
 
+        <S.UserDetailsContainer >
+        
+                <img src={card?.profileImg} style={{"width": "50px", "height": "50px", "border-radius": " 50%"}} />
+
+            <span>
+                {card?.username}
+            </span>
+
+        </S.UserDetailsContainer>
+        
         </S.DetailsContainer>
 
 
@@ -40,3 +54,4 @@ export const Card = ({card}) => (
     </S.CardContainer> 
 //card-wrapper
 )
+    }

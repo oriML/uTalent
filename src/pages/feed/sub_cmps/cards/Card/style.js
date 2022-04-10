@@ -5,17 +5,10 @@ export const CardContainer = styled.div`
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
-    height: 40vh;
-
-    // border:1px solid grey;
-    
+    height: 40vh;    
     box-shadow: 0px 3px 5px grey;
     border-radius: 25px 25px 25px 22px;
-    // border-bottom: 1px solid grey;
     background-color: #F08E00;
-
-    // outline: 5px solid #9CB0A4;
-    // outline-offset: -.5px;
 
     `
 
@@ -28,8 +21,31 @@ export const DetailsContainer = styled.div`
     box-shadow: -15px 0px 17px -7px rgba(0,0,0,0.25);
     position: relative;
     left: .95px;
+    font-size: 1.3rem;
+    padding: 1rem;
+    // border: 10px solid red;
 
+    .card-title{
 
+        color: #F3FBF4;
+        font-style: italic;
+        font-size: 2rem;
+        opacity: .70;
+      
+    }
+
+`
+
+export const UserDetailsContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: .3em;
+
+    width: fit-content;
+    padding: .1em .5em ;
+    // border: 2px solid black;
+    border-radius: 50px;
+    background-color: #DFE0DF;
 `
 
 export const ImagesContainer = styled.div`

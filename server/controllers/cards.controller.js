@@ -1,5 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const cardsService = require('../services/cards.service')
+const usersService = require('../services/users.service')
 const cloudinaryService = require('../services/cloudinary.service')
 
 // ------ fetch function. Sends the request automatically to custom catch errors function ------
@@ -59,6 +60,57 @@ const removeCardFromUser = catchAsync(async (req, res) => {
     
 });
 
+/** UNLOGGED USER (public info) */
+
+const getAllUnloggedUserCards = catchAsync(async (req,res) => {
+    
+    console.log("getAllUnloggedUserCards")
+    let _cards = [];
+    const cards = await cardsService.fetchAllFeedCards();
+    
+     for(const card of cards){
+      await usersService.fetchUserById(card.userId)
+     .then(user => {
+         console.log(user.firstName + "" + user.lastName);
+          _cards.push({
+              title: card.title,
+              description: card.description,
+              tags: card.tags,
+              images: card.images,
+              profileImg: user.profileImg,
+              username: user.firstName + " " + user.lastName
+              }
+            )
+     })
+     }
+     
+     res.status(200).send(_cards);
+    // await cardsService.fetchAllFeedCards()
+    // .then(cards => {
+    //     console.log(cards)
+    //     const unloggedUserFeedCards = cards.reduce( (prev, card)=>{
+
+    //         const unloggedUserFeedCard = {
+    //             title: card.title,
+    //             description: card.description,
+    //             tags: card.tags,
+    //             images: card.images,
+    //             // profileImg: card.user.profileImg,
+    //             // username: card.user.name
+    //         };
+
+    //         return [
+    //             ...prev,
+    //             unloggedUserFeedCard
+    //         ]
+    //     } , [])
+
+    //     res.status(200).json(unloggedUserFeedCards);
+
+    // })
+    
+})
+
 module.exports = {
     getAllCards,
     getAllFilteredCards,
@@ -66,5 +118,7 @@ module.exports = {
     addCardToUser,
     editCardOfUser,
     removeCardFromUser,
+
+    getAllUnloggedUserCards,
 }
 

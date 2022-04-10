@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const httpStatus = require('http-status');
 const routes = require('./routes/v1');
+const publicRoutes = require('./routes');
 
 const logger = require('./utils/logger')
 const ApiError = require('./utils/ApiError');
@@ -23,12 +24,13 @@ app.options('*', cors());
 app.use(express.json({limit: '50mb'})) // allows the app to accept json
 
 app.use(express.urlencoded({
-extended: false,
-limit:'50mb'
+    extended: false,
+    limit:'50mb'
 }))
 
-// app.use(middlware.decodeToken)
+app.use('/',publicRoutes)// for public info
 
+// app.use('/v1', middlware.decodeToken) // for personal info -> set it on app.use('v1/', routes)
 app.use('/v1', routes)
 
 app.use((req, res, next) => {

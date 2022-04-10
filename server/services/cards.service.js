@@ -73,6 +73,6 @@ module.exports ={
     getCardsOfUser,
     insertCardToUser,
     updateCardOfUser,
-    deleteCardFromUser
+    deleteCardFromUser,
     
 }
