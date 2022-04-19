@@ -30,14 +30,14 @@ export const asyncCardsFunctions = {
         async function(filter, { dispatch, getState }){
                 
             const { userAuth } = getState();
-
+             
             if(userAuth.isAuth)
                 {
                 const config = {
-                    params: { filter: filter },
+                     data: filter ,
                     headers:{ 'Authorization': 'Bearer ' + userAuth.userFirebaseToken }
                 }
-            return await axios.get(url, config)
+            return await axios.post(url + 'filter', config)
             }
         },
 }

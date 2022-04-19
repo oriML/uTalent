@@ -47,7 +47,7 @@ async function removeUser({id,uid}){
 }
 
 async function updateUser(id,x){
-    console.log(x)
+    console.log("updateUser" ,x)
 
     return User.findByIdAndUpdate(id, x);
 }

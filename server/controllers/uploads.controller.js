@@ -5,24 +5,26 @@ const cloudinaryService = require('../services/cloudinary.service');
 
 const uploadProfileOfUser = catchAsync( async (req, res) => {
 
-        if(req.body === null){
-            
-            return res.status(400).json({message: 'no file uploaded'})
-        }
+        if(req.body === null)
+            {
+                throw new Error('file is empty')
+            }
         
         const id = req.query.id;
         const fileStr = req.body.data;
         let profile = "";
         
         await cloudinaryService.uploadProfileImageOfUser(id, fileStr)
-        .then( result => profile = result.url)
-        .catch(err => res.status(500).json({ error: err.error }))
+        .then( result => {
+            const url = result.url
+            if(typeof url === "string")
+                profile = url
+            else throw new Error('Problem with upload to server')
+        })
 
         await usersService.updateUser(id, { profileImg: profile})
         .then( result => res.json({message: result}))
-        .catch(err => res.status(500).json({error: err.error }))
 
-    // await cloudinaryService.uploadProfileImageOfUser(req.body)
 })
 
 

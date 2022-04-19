@@ -19,13 +19,20 @@ const Feed = () => {
     
     const { cards } = useSelector(cardsSelector)
 
+    const applyTags = () => {
+
+        const tags = cards.map( card => card.tags[0]+ " " )
+
+        return tags.reduce( (prev, current) =>  [ ...prev, ...current.split(' ')] , [])
+    }
+
     const { _category } = useParams();
 
     return(
             <section className="feed">
-                
+
                 <div className="feed-navbar">
-                    <FeedNavbar />
+                    <FeedNavbar tags={ applyTags().filter((value, index, self) => self.indexOf(value) === index ) } />
                 </div>
 
                 <div className="feed-cards">

@@ -7,32 +7,70 @@
  * from others. So interactive search experience wouldn't be necessary here
  * 
  */
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { getFilteredCards } from '../../store/features/cards/cards'
+
+import * as S from './style'
 
 
+const FeedNavbar = ({tags}) => {
 
-const FeedNavbar = () => {
+    const dispatch = useDispatch();
+
+    const [ checkboxsValues, setCheckboxsValue] = useState([])
+    const [ searchValues, setSearchValues] = useState([])
+
+    const handleCheckBoxsValue = e => {
+        
+        const value = e.target.name;
+        
+        if(!checkboxsValues.some(v => v === value))
+            setCheckboxsValue( p => [ ...p, value ] )
+        else 
+            setCheckboxsValue( checkboxsValues.filter( v => v !== value) )
+
+    }
+
+    const handleSearchValue = e => {
+        
+        const values = e.target.value;    
+        setSearchValues(values.split(' '))
+    }
+
+    const handleSearchInputs = () => {
+
+        dispatch( getFilteredCards(searchValues.concat(checkboxsValues)) )
+        
+    }
+
+    // useEffect( () => {console.log(checkboxsValues)} , [checkboxsValues ])
 
     return(
-        <nav>
 
-            <div className="feed-navbar-tab">
-                Checkboxs
-            </div>
+        <S.SearchBarsWrapper>
+            <S.Mui_CheckBoxNavBar bgColor='#00C565'>
+                {
+                    tags.map(tag => {
+                        return <label>
+                                    {tag}
+                                    <input type="checkbox" name={tag} onClick={handleCheckBoxsValue} />
+                                </label>
+                    })
+                }
+               
+            </S.Mui_CheckBoxNavBar>
 
-            <div className="feed-navbar-tab">
-                search input
-            </div>
+            <S.Mui_SearchNavBar bgColor='#62BAAC'>
 
-            <div className="feed-navbar-tab">
+                <input type="search" placeholder='חפש לפי תגית, מקצוע, כישרון' onChange={handleSearchValue}/>
 
-            </div>
-
-            <div className="feed-navbar-tab">
-
-            </div>
+            </S.Mui_SearchNavBar>
 
 
-        </nav>
+            <button onClick={handleSearchInputs}> שלח </button>
+        </S.SearchBarsWrapper>
 
     )
     

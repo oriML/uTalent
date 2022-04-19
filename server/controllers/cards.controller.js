@@ -15,7 +15,10 @@ const getAllCards = catchAsync(async (req, res) => {
 
 const getAllFilteredCards = catchAsync(async (req, res) => {
     // ---> call to service of get cards of req.body.user.email
-    await cardsService.fetchAllFilteredFeedCards(req.body)// sends 1 arguments -> filter settings: Object
+    console.log("im on filtered cards")
+    const filter = req.body.data;
+    
+    await cardsService.fetchAllFilteredFeedCards(filter)// sends 1 arguments -> filter : Array
     .then( cards => res.status(200).json(cards));
 
 });

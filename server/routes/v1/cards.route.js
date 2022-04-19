@@ -9,6 +9,8 @@ const router = express.Router();
 
 router.get('/', cardsController.getAllCards);// function with parmeters to all cards and filtered
 
+router.post('/filter', cardsController.getAllFilteredCards);// function with parmeters to all cards and filtered
+
 router.post('/', cardsController.addCardToUser);
 
 router.put('/', cardsController.editCardOfUser);

@@ -9,11 +9,11 @@ async function fetchAllFeedCards(){
 
 }
 
-async function fetchAllFilteredFeedCards({filterSettings}){
+async function fetchAllFilteredFeedCards(filter){
 
-    // filter settings = { date: "...", location: "..."}
+    // { '_id': { $in: [...cardsIds] } }
     // mongoose queries
-    return Card.find({...filterSettings})
+    return Card.find({ 'tags': { $in: filter} })
 
 }
 

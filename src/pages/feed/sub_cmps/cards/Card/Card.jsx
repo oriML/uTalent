@@ -12,7 +12,7 @@ export const Card = ({card}) => {
     
     return(
 
-    <S.CardContainer className="card-wrapper">
+    <S.CardContainer className="card-wrapper" key={card.images[0].url}>
         
         <S.DetailsContainer className="card-details">
 
@@ -24,13 +24,11 @@ export const Card = ({card}) => {
                 {card?.description}
             </p>
 
-        <S.UserDetailsContainer >
+        <S.UserDetailsContainer>
         
-                <img src={card?.profileImg} style={{"width": "50px", "height": "50px", "border-radius": " 50%"}} />
+                <img src={card?.profileImg} />
 
-            <span>
-                {card?.username}
-            </span>
+            <span> {card?.username} </span>
 
         </S.UserDetailsContainer>
         
@@ -44,6 +42,12 @@ export const Card = ({card}) => {
                     url => <img key={url} src={url}/>
             )
             }
+            {
+                card?.images?.map(
+                    url => <img key={url} src={url}/>
+            )
+            }
+            
 
         </S.ImagesContainer>
         
