@@ -38,12 +38,21 @@ const CardsUpload = () => {
   const handleInput = e => {
     const name = e.target.name
     const value = e.target.value
+    if(name !== 'tags')
     setNewCard( p => {
       return {
         ...p,
         [name]: value
       }
     })
+    else
+    setNewCard(p => {
+      return {
+        ...p,
+        [name]: value.replaceAll(',',' ').split(' ').filter( c => c!== '')
+      }
+    })
+
   }
 
   const handleImages = (e) => {
@@ -73,7 +82,7 @@ const CardsUpload = () => {
       
   }
 
-useEffect(()=> console.log(images), [images])
+useEffect(()=> console.log(newCard.tags), [newCard])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

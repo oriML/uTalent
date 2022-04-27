@@ -16,6 +16,7 @@ import ProfileButtons from './sub_cmps/buttons/Buttons.profile';
 import * as S from './style';
 import { StyledPage } from '../style/main';
 import ProfileDetails from './sub_cmps/details/Details.profile';
+import Table from './sub_cmps/cards-table/table/Table';
 
 const userSelector = (state) => {
     // const userFromLocal = JSON.parse(localStorage.getItem('user'))
@@ -61,7 +62,8 @@ const Profile = () => {
                             />
 
                     }                            
-                            <CardsTable cards={user?.cards}/>
+                            {/* <CardsTable cards={user?.cards}/> */}
+                            <Table cards={user?.cards}/>   
 
                     </S.Mui_Card>
             </StyledPage>

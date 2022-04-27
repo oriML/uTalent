@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux'
 import { getFilteredCards } from '../../store/features/cards/cards'
 
 import * as S from './style'
-
+import * as GeneralStyle from '../../pages/profile/sub_cmps/buttons/style'
 
 const FeedNavbar = ({tags}) => {
 
@@ -62,14 +62,15 @@ const FeedNavbar = ({tags}) => {
                
             </S.Mui_CheckBoxNavBar>
 
-            <S.Mui_SearchNavBar bgColor='#62BAAC'>
+            <S.SearchNavBar bgColor='#62BAAC'>
 
                 <input type="search" placeholder='חפש לפי תגית, מקצוע, כישרון' onChange={handleSearchValue}/>
 
-            </S.Mui_SearchNavBar>
+            </S.SearchNavBar>
 
+                
+            <S.Mui_Button  onClick={handleSearchInputs} />
 
-            <button onClick={handleSearchInputs}> שלח </button>
         </S.SearchBarsWrapper>
 
     )

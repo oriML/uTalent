@@ -10,6 +10,7 @@ const getAllCards = catchAsync(async (req, res) => {
     console.log("I'm on get all cards")
     await cardsService.fetchAllFeedCards()// no arguments needed
     .then( cards => res.status(200).json(cards));
+    
 
 });
 
@@ -17,9 +18,27 @@ const getAllFilteredCards = catchAsync(async (req, res) => {
     // ---> call to service of get cards of req.body.user.email
     console.log("im on filtered cards")
     const filter = req.body.data;
+    let _cards = [];
     
     await cardsService.fetchAllFilteredFeedCards(filter)// sends 1 arguments -> filter : Array
-    .then( cards => res.status(200).json(cards));
+    .then( async cards => {
+        for(const card of cards){
+            await usersService.fetchUserById(card.userId)
+           .then(user => {
+               console.log(user.firstName + "" + user.lastName);
+                _cards.push({
+                    title: card.title,
+                    description: card.description,
+                    tags: card.tags,
+                    images: card.images,
+                    profileImg: user.profileImg,
+                    username: user.firstName + " " + user.lastName
+                  })
+           })
+           }
+    })
+        
+    res.status(200).json(_cards);
 
 });
 
@@ -82,35 +101,11 @@ const getAllUnloggedUserCards = catchAsync(async (req,res) => {
               images: card.images,
               profileImg: user.profileImg,
               username: user.firstName + " " + user.lastName
-              }
-            )
+            })
      })
      }
      
      res.status(200).send(_cards);
-    // await cardsService.fetchAllFeedCards()
-    // .then(cards => {
-    //     console.log(cards)
-    //     const unloggedUserFeedCards = cards.reduce( (prev, card)=>{
-
-    //         const unloggedUserFeedCard = {
-    //             title: card.title,
-    //             description: card.description,
-    //             tags: card.tags,
-    //             images: card.images,
-    //             // profileImg: card.user.profileImg,
-    //             // username: card.user.name
-    //         };
-
-    //         return [
-    //             ...prev,
-    //             unloggedUserFeedCard
-    //         ]
-    //     } , [])
-
-    //     res.status(200).json(unloggedUserFeedCards);
-
-    // })
     
 })
 

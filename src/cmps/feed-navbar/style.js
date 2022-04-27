@@ -12,12 +12,23 @@ import {
  import { Link } from "react-router-dom";
 
 export const SearchBarsWrapper = styled.div`
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
 
+    display: grid;
+    grid-template-rows: .5fr .5fr .5fr;
+    grid-template-columns: .2fr 1.2fr .2fr;
+    grid-template-areas: 
+    ". checkboxs ."
+    ". searchBar ."
+    ". . searchButton"
+     ;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: #FDEDE9;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 2rem;
 
 `
 
@@ -27,6 +38,7 @@ styledMui(AppBar,{
     slot: 'wrapper'
 })
 `
+    grid-area: checkboxs;
     position: static;
     background-color: ${props => props.bgColor };
     opacity: 80%;
@@ -36,30 +48,32 @@ styledMui(AppBar,{
     align-items: center;
     justify-content: right;
     width: 100%;
-    height: 6vh;
-    border-radius: 50px;
-    padding-left: 15px;
+    min-width: 150px;
+    height: 20vh;
+    min-height: 100px;
+    border-radius: .8rem;
+    padding-right: 1rem;
     
     > label{
         direction: ltr;
     }
 
 `
-export const Mui_SearchNavBar = styledMui(AppBar,{
-    name: 'StyledNavBar',
-    slot: 'wrapper'
-})`
+export const SearchNavBar = styled.div`
     position: static;
     background-color: ${props => props.bgColor };
-    opacity: 80%;
-    margin-bottom: 1rem;
+    // opacity: 80%;
+    margin: .5rem auto;
     display:flex;
     align-items: center;
     justify-content: center;
-    width: fit-content;
-    height: 6vh;
+    width: 65%;
+    height: 25%;
+    min-height: 35px;
     border-radius: 50px;
-   
+    grid-area: searchBar;
+
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 
     > input[type="search"]{
         
@@ -77,8 +91,8 @@ export const Mui_SearchNavBar = styledMui(AppBar,{
         border-color: transparent;
         // border: 2px solid red;
         background-color: transparent;
-        padding: 0 1.5rem;
-        width: 50vw;
+        // padding: 0 1rem;
+        width: 95%;
         color: white;
         font-size: 1rem;
         text-indent: 5px;
@@ -86,4 +100,27 @@ export const Mui_SearchNavBar = styledMui(AppBar,{
 
     }
 
+`
+
+export const Mui_Button = styledMui(Button)`
+    width: 45px;
+    height: 45px;
+    color: #402E32;
+    background-color: #62BAAC;
+    // border-radius: 10% 10% 50% 20%;
+    border-radius: 1.5rem;
+    color: #DFE0DF;
+    // outline: 1px solid #006E5F;
+    // outline-style: outset;
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+
+    &:hover{
+        background-color: #62CAAA;
+        color: white;
+    }
+    :after{
+        content: ">>";
+        font-size: 2rem;
+    }
+    grid-area: searchButton;
 `
