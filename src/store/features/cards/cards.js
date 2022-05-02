@@ -7,7 +7,8 @@ export const getCards = createAsyncThunk('cards/getCards',asyncCardsFunctions.ge
 
 export const getFilteredCards = createAsyncThunk('cards/getFilteredCards',asyncCardsFunctions.getFilteredCards )
 
-    
+export const deleteCard = createAsyncThunk('cards/deleteCard',asyncCardsFunctions.deleteCard )
+
 
 const initialState = {
     cards: [],
@@ -29,9 +30,6 @@ export const cardsSlice = createSlice({
         // },
         updateCard: (state, action) => {
             console.log("updateCard reducer", "state:", state, "action:", action)
-        },
-        deleteCard: (state, action) => {
-            console.log("deleteCard reducer", "state:", state, "action:", action)
         },
 
     },
@@ -58,11 +56,25 @@ export const cardsSlice = createSlice({
             console.log(action)
             state.isLoading = false;
         },
+        [deleteCard.pending]: (state, action)=>{
+            console.log(action)
+            state.isLoading = true
+        },
+        [deleteCard.fulfilled]: (state, {payload})=>{
+            console.log(payload);
+            state.isLoading = false
+            // state.cards = state.cards.filter(card => card.id !== payload)
+
+        },
+        [deleteCard.rejected]: (state, action)=>{
+            console.log(action)
+            state.isLoading = false;
+        },
 
     }
 
 })
 
-export const { addCards,getCard, updateCard, deleteCard} = cardsSlice.actions;
+export const { addCards,getCard, updateCard, } = cardsSlice.actions;
 
 export default cardsSlice.reducer;

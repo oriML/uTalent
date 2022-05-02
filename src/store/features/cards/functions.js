@@ -7,7 +7,7 @@ export const asyncCardsFunctions = {
 
         getCards:
 
-        async function(i, {dispatch, getState}){
+        function(i, {dispatch, getState}){
 
             const { userAuth } = getState();
     
@@ -40,4 +40,21 @@ export const asyncCardsFunctions = {
             return await axios.post(url + 'filter', config)
             }
         },
+        deleteCard:
+
+        async function({userId, cardId}, {dispatch, getState} ){
+
+            const { userAuth } = getState();
+            console.log(userId, cardId)
+
+            if(userAuth.isAuth)
+                {
+                const config = {
+                    data: {userId},
+                    headers:{ 'Authorization': 'Bearer ' + userAuth.userFirebaseToken }
+                }
+                return await axios.delete(url + cardId, config)
+
+        }
+    }
 }

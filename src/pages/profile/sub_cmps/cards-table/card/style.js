@@ -19,7 +19,6 @@ export const Card = styled.div`
     background-size: 100% 80%;
     cursor: pointer;
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
-    
     .image{
         
         margin-bottom: 1rem;
@@ -29,6 +28,7 @@ export const Card = styled.div`
             width: 150px;
             height: 150px;
             border-radius: 5px;
+            
         }
     }
 
@@ -43,4 +43,15 @@ export const Card = styled.div`
         font-style: italic;
     }
 
-    `
+    .delete{
+        color: white;
+        font-size: 2rem;
+        z-index: 10;
+        position: relative;
+        top: -50%;
+        right: -40%;
+        :hover{
+            color: red;
+        }
+    }
+`

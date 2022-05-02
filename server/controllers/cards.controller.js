@@ -73,9 +73,12 @@ const editCardOfUser = catchAsync(async (req, res) => {
     
 });
 
-const removeCardFromUser = catchAsync(async (req, res) => {
+const removeCardFromUser = catchAsync((req, res) => {
     // ---> call to service of get cards of req.body.user.email
-    await cardsService.deleteCardFromUser(req.body)// sends 2 arguments -> user id & card id
+    const userId = req.body.userId;
+    const cardId = req.params.id;
+    console.log(userId, cardId)
+    cardsService.deleteCardFromUser(userId, cardId)// sends 2 arguments -> user id & card id
     .then(result => {
         res.status(200).json({message:'delete-card/succesfull'});
     })

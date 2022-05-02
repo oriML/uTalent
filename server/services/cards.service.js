@@ -50,16 +50,16 @@ async function updateCardOfUser({id, card}){
 
 }
 
-async function deleteCardFromUser({id, card}){
-     
+async function deleteCardFromUser(id, cardId){
+     console.log("delete card", id, cardId)
     const _user = await User.findById(id);
-    await Card.delete(card.id)
+    await Card.deleteOne({_id: cardId})
 
     return await _user.update(
         id,
         {
         ..._user,
-        cards: (c) => c.filter(card => card.id !== card.id)
+        cards: (c) => c.filter(card => card.id !== cardId)
     })
 
 

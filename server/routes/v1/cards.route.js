@@ -15,7 +15,7 @@ router.post('/', cardsController.addCardToUser);
 
 router.put('/', cardsController.editCardOfUser);
 
-router.delete('/', cardsController.removeCardFromUser);
+router.delete('/:id', cardsController.removeCardFromUser);
 
 
 module.exports = router;
