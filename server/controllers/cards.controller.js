@@ -66,7 +66,19 @@ const addCardToUser = catchAsync(async (req, res) => {
 
 const editCardOfUser = catchAsync(async (req, res) => {
     // ---> call to service of get cards of req.body.user.email
-    await cardsService.updateCardOfUser(req.body)// sends 1 arguments -> card id
+    const cardId = req.params.id;
+    const newCard = req.body.data;
+    const oldCard = await cardsService.fetchSingleCard(newCard.id);
+    let _images = newCard.images;
+    const equals = (a,b) => a.length === b.length && a.every((v,i) => v === b[i]);
+    if(!equals(newCard.images, oldCard.images))
+        {
+            const tmp = await cloudinaryService.uploadImages(newCard.userId, newCard.images);
+            _images = tmp.reduce((prev,curr)=>{ return [...prev, curr.url] },[])
+            
+        }
+    // const userAuthId = authService.fetchUserAuthId();
+    await cardsService.updateCardOfUser({...newCard, ['images']: _images})// sends 1 arguments -> card id
     .then(result => {
         res.status(200).json({result, message:'update-card/succesfull'});
     })

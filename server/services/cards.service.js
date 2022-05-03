@@ -44,9 +44,12 @@ async function insertCardToUser(id, card){
 
 }
 
-async function updateCardOfUser({id, card}){
+async function updateCardOfUser(card){
      
-    return Card.updateOne(card.id, card)
+    return Card.updateOne(
+        {_id: card.id},
+        card
+        )
 
 }
 

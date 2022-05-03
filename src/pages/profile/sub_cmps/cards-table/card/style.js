@@ -43,15 +43,32 @@ export const Card = styled.div`
         font-style: italic;
     }
 
-    .delete{
-        color: white;
-        font-size: 2rem;
-        z-index: 10;
-        position: relative;
-        top: -50%;
-        right: -40%;
-        :hover{
-            color: red;
+    .actions{
+        position: absolute;
+        
+
+        .delete{
+            color: black;
+            font-size: 2rem;
+            // z-index: 10;
+            // position: relative;
+            // top: -50%;
+            // right: -40%;
+            :hover{
+                color: red;
+            }
         }
-    }
+
+        .edit{
+            color: black;
+            font-size: 2rem;
+            // z-index: 10;
+            // position: relative;
+            // top: -50%;
+            // right: -40%;
+            :hover{
+                color: orange;
+            }
+        }    
+}
 `

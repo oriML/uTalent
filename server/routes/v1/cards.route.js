@@ -13,7 +13,7 @@ router.post('/filter', cardsController.getAllFilteredCards);// function with par
 
 router.post('/', cardsController.addCardToUser);
 
-router.put('/', cardsController.editCardOfUser);
+router.put('/:id', cardsController.editCardOfUser);
 
 router.delete('/:id', cardsController.removeCardFromUser);
 

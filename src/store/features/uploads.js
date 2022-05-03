@@ -80,6 +80,36 @@ export const uploadCardOfUser = createAsyncThunk(
         
         )// asyncThunk
 
+export const editCardOfUser = createAsyncThunk(
+        'uploads/editCardOfUser',
+        async ( card, { dispatch, getState}) => {
+    
+            const { userAuth,user } = getState();
+
+            if(userAuth.isAuth)
+            {   
+            const config = { 
+                onUploadProgress: progressEvent => {
+                    console.log('Upload Progress: ' + Math.round(progressEvent.loaded / progressEvent.target * 100) + '%')
+                    },
+                    headers:{ 
+                        'Authorization': 'Bearer ' + userAuth.userFirebaseToken,
+                        'Content-Type': 'application/json'
+                    },
+                }        
+                
+                return await axios.put( 
+                    REACT_APP_CARDS_URL + card.id,
+                    // JSON.stringify({data: card}),
+                    {data: card},
+                    config
+                )
+            }
+            
+            }//async function
+        
+        )// asyncThunk
+
 
 export const uploadsSlice = createSlice({
     name: "uploads",

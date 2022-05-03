@@ -31,4 +31,5 @@ async function verifyToken(req, res, next){
 module.exports = {
     authUserByEmailAndPassword,
     verifyToken,
+    
 }

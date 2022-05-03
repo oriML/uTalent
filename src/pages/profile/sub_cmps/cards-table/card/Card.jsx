@@ -1,32 +1,48 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { deleteCard } from '../../../../../store/features/cards/cards';
-import * as S from './style'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteCard } from "../../../../../store/features/cards/cards";
+import EditCard from "./edit-card/EditCard";
 
-function Card({card}) {
+import * as S from "./style";
+
+function Card({ card }) {
   
   const dispatch = useDispatch();
 
-  const handleDelete = e => {
-    if(window.confirm('are u sure u want to delete card?')){
-      dispatch(deleteCard({userId: card.userId ,cardId: card._id}))
+  const [ toggleEdit, setToggleEdit ] = useState(false);
+
+  const handleDelete = (e) => {
+    if (window.confirm("are u sure u want to delete card?")) {
+      dispatch(deleteCard({ userId: card.userId, cardId: card._id }));
     }
-  }
+  };
+
+  const handleEdit = (e) => {
+    setToggleEdit(p => !p);
+
+  };
 
   return (
-      <S.Card bg={card?.images[0]} >
-      {console.log(card)}
-        <span className='delete' onClick={handleDelete}>X</span>
-        <div className='image'>
-        {/* <img src={card?.images[0]} alt="user main img" /> */}
-        
-        </div>
+    <>
+      <S.Card bg={card?.images[0]}>
+        {console.log(card)}
+        <div className="details">{card?.description}</div>
 
-        <div className='details'>
-        {card?.description}
+        <div className="actions">
+
+          <span className="delete" onClick={handleDelete}>
+            X
+          </span>
+
+          <span className="edit" onClick={handleEdit}>
+            E
+          </span>
+
         </div>
-        </S.Card>
-  )
+      </S.Card>
+      { !!toggleEdit && <EditCard card={card} /> }
+    </>
+  );
 }
 
-export default Card
+export default Card;
