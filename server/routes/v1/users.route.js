@@ -10,5 +10,8 @@ router.put('/', usersController.editUser);
 
 router.delete('/', usersController.deleteUser);
 
+router.post("/profile", usersController.uploadProfileOfUser);
+
+
 
 module.exports = router;

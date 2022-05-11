@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 
 import { useForm } from 'react-hook-form'
 
-import { uploadCardOfUser } from '../../../../../../store/features/uploads';
+import { uploadCardOfUser } from '../../../../store/features/uploads';
 import { useEffect } from 'react';
-import useLocalStorage from '../../../../../../hooks/useLocalStorage';
+import useLocalStorage from '../../../../hooks/useLocalStorage';
 
 const CardsUpload = () => {
 
@@ -82,7 +82,7 @@ const CardsUpload = () => {
       
   }
 
-useEffect(()=> console.log(newCard.tags), [newCard])
+useEffect(()=> console.log(images), [images])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

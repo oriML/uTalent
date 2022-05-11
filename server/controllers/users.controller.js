@@ -1,8 +1,8 @@
 const catchAsync = require('../utils/catchAsync');
-const usersService = require('../services/users.service')
-const cardsService = require('../services/cards.service')
-const cloudinaryService = require('../services/cloudinary.service')
-const admin = require('../config/firebase-config')
+const usersService = require('../services/db/db.users.service')
+const cardsService = require('../services/db/db.cards.service')
+const cloudService = require('../services/cloud.service')
+// const admin = require('../config/firebase-config')
 // ------ fetch function. Sends the request automatically to custom catch errors function ------
 
 // ** photos uploads after user created with minimum details. That will make the cloudinary only from update user call. ** //
@@ -106,10 +106,38 @@ const deleteUser = catchAsync(async (req, res) => {
             
 })
 
+const uploadProfileOfUser = catchAsync( async (req, res) => {
+
+    if(req.body === null)
+        {
+            throw new Error('file is empty')
+        }
+    console.log("change profile from users controller")
+    const id = req.query.id;
+    const fileStr = req.body.data;
+    let profile = "";
+    
+    await cloudService.uploadProfileImageOfUser(id, fileStr)
+    .then( result => {
+        const url = result.url
+        if(typeof url === "string")
+            profile = url
+        else throw new Error('Problem with upload to server')
+    })
+
+    await usersService.updateUser(id, { profileImg: profile})
+    .then( result => res.json({message: result}))
+
+})
+
+const deleteProfileOfUser = catchAsync( async (req, res) => {
+    
+})
 
 module.exports = {
             getUser,
             addUser,
             deleteUser,
-            editUser
+            editUser,
+            uploadProfileOfUser
 }

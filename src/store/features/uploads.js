@@ -10,7 +10,7 @@ import { getUser } from "./user/user";
  * the userAuth slice will be charge on user authentications actions
  * such as login logput register etc.
  */
- const url = process.env.REACT_APP_UPLOADS_URL;
+ const url = process.env.REACT_APP_CARDS_URL;
 
  const {
     REACT_APP_UPLOADS_PROFILE,
@@ -18,6 +18,7 @@ import { getUser } from "./user/user";
     REACT_APP_UPLOADS_IMAGES,
     REACT_APP_UPLOADS_VIDEO,
     REACT_APP_CARDS_URL,
+    REACT_APP_USERS_URL
  } = process.env;
 
 export const uploadProfileImage = createAsyncThunk(
@@ -39,7 +40,7 @@ export const uploadProfileImage = createAsyncThunk(
                 params: {id: user.user._id},
             }        
             return axios.post( 
-                url + REACT_APP_UPLOADS_PROFILE,
+                REACT_APP_USERS_URL + 'profile/',//+ REACT_APP_UPLOADS_PROFILE,
                 JSON.stringify({data: file}),
                 config
             )
@@ -69,7 +70,7 @@ export const uploadCardOfUser = createAsyncThunk(
                 }        
                 
                 return await axios.post( 
-                    url + REACT_APP_UPLOADS_CARD,
+                    url ,//+ REACT_APP_UPLOADS_CARD,
                     // JSON.stringify({data: card}),
                     {data: card},
                     config

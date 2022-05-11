@@ -1,81 +1,90 @@
-const mongoose = require('mongoose');
-const Card = require('../models/card.interface')
-const User = require('../models/user.interface');
+// const mongoose = require('mongoose');
+// const Card = require('../models/card.interface')
+// const User = require('../models/user.interface');
 
-async function fetchAllFeedCards(){
+// async function fetchAllFeedCards(){
 
-// go to db and fetc all cards of user
-    return Card.find({})
+// // go to db and fetc all cards of user
+//     return Card.find({})
 
-}
+// }
 
-async function fetchAllFilteredFeedCards(filter){
+// async function fetchAllFilteredFeedCards(filter){
 
-    // { '_id': { $in: [...cardsIds] } }
-    // mongoose queries
-    return Card.find({ 'tags': { $in: filter} })
+//     // { '_id': { $in: [...cardsIds] } }
+//     // mongoose queries
+//     return Card.find({ 'tags': { $in: filter} })
 
-}
+// }
 
-async function fetchSingleCard(card){
+// async function fetchSingleCard(card){
     
-    return Card.findOne(card.id)
-}
+//     return Card.findOne(card.id)
+// }
 
-async function getCardsOfUser(cardsIds){
+// async function getCardsOfUser(cardsIds){
 
-    return Card.find({ '_id': { $in: [...cardsIds] } })
-}
+//     return Card.find({ '_id': { $in: [...cardsIds] } })
+// }
 
-async function insertCardToUser(id, card){
+// async function insertCardToUser(id, card){
 
-    const _card = new Card({
-        ...card,
-        userId: id
-    })
+//     const _card = new Card({
+//         ...card,
+//         userId: id
+//     })
     
-    await _card.save();
+//     await _card.save();
 
-    return User.updateOne(
-        { _id: id},
-        {$push: {cards: _card._id}},
-    )
+//     await User.updateOne(
+//         { _id: id},
+//         {$push: {cards: _card._id}},
+//     )
+    
+//     return _card._id
 
+// }
 
-}
-
-async function updateCardOfUser(card){
+// async function updateCardOfUser(card){
      
-    return Card.updateOne(
-        {_id: card.id},
-        card
-        )
+//     return Card.updateOne(
+//         {_id: card.id},
+//         card
+//         )
 
-}
+// }
 
-async function deleteCardFromUser(id, cardId){
-     console.log("delete card", id, cardId)
-    const _user = await User.findById(id);
-    await Card.deleteOne({_id: cardId})
+// async function deleteCardFromUser(id, cardId){
+//      console.log("delete card", id, cardId)
+//     const _user = await User.findById(id);
+//     await Card.deleteOne({_id: cardId})
 
-    return await _user.update(
-        id,
-        {
-        ..._user,
-        cards: (c) => c.filter(card => card.id !== cardId)
-    })
-
-
-}
+//     return await _user.update(
+//         id,
+//         {
+//         ..._user,
+//         cards: (c) => c.filter(card => card.id !== cardId)
+//     })
 
 
-module.exports ={
-    fetchAllFeedCards,
-    fetchSingleCard,
-    fetchAllFilteredFeedCards,
-    getCardsOfUser,
-    insertCardToUser,
-    updateCardOfUser,
-    deleteCardFromUser,
+// }
+
+
+// module.exports ={
+//     fetchAllFeedCards,
+//     fetchSingleCard,
+//     fetchAllFilteredFeedCards,
+//     getCardsOfUser,
+//     insertCardToUser,
+//     updateCardOfUser,
+//     deleteCardFromUser,
     
-}
+// }
+
+
+// /**
+//  * uploads.service CRUD:
+//  * uploadImages
+//  * removeImages
+//  * 
+//  */

@@ -7,7 +7,7 @@ import { uploadProfileAndRefresh } from '../../store/features/uploads'
 
 import { refreshLocalUser } from "../../store/features/user/user";
 
-import CardsUpload from "./sub_cmps/cards/cards/card/card.upload";
+import CardsUpload from "./sub_cmps/cards/card.upload";
 
 const Upload = () => {
 

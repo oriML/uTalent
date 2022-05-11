@@ -1,7 +1,7 @@
 const express = require('express');
 const usersRoute = require('./users.route');
 const cardsRoute = require('./cards.route');
-const uploadsRoute = require('./uploads.route');
+// const uploadsRoute = require('./uploads.route');
 
 const router = express.Router();
 
@@ -14,11 +14,11 @@ const defaultRoutes = [
     {
         path: '/cards',
         route: cardsRoute,
-    },
-    {
-        path: '/uploads',
-        route: uploadsRoute,
-    },
+    }
+    // {
+    //     path: '/uploads',
+    //     route: uploadsRoute,
+    // },
 
 ];
 
