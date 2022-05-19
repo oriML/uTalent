@@ -7,7 +7,8 @@ import { uploadProfileAndRefresh } from '../../store/features/uploads'
 
 import { refreshLocalUser } from "../../store/features/user/user";
 
-import CardsUpload from "./sub_cmps/cards/card.upload";
+import CardsUpload from "./sub_cmps/card.upload";
+import { StyledPage } from "../style/main";
 
 const Upload = () => {
 
@@ -38,6 +39,7 @@ const Upload = () => {
     // useEffect(()=>{console.log(fileToUpload)},[fileToUpload])
     
         return(
+            <StyledPage>
 
              <section className="upload-page">
                  <CardsUpload />
@@ -62,6 +64,7 @@ const Upload = () => {
                 </form>
 
              </section>
+            </StyledPage>
 
         )
 }

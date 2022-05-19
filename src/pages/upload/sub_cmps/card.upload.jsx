@@ -3,9 +3,13 @@ import { useDispatch } from "react-redux";
 
 import { useForm } from 'react-hook-form'
 
-import { uploadCardOfUser } from '../../../../store/features/uploads';
+import { uploadCardOfUser } from '../../../store/features/uploads';
 import { useEffect } from 'react';
-import useLocalStorage from '../../../../hooks/useLocalStorage';
+import useLocalStorage from '../../../hooks/useLocalStorage';
+
+import { FormContainer, UploadPage  } from './style';
+
+import { input, Button } from '@mui/material'
 
 const CardsUpload = () => {
 
@@ -29,7 +33,7 @@ const CardsUpload = () => {
 
   const onSubmit = async e => {
       // e.preventDefault()
-      await dispatch(uploadCardOfUser({...newCard, images}))
+      dispatch(uploadCardOfUser({...newCard, images}))
       // middleware to upload and re-save user after serverupdate
             dispatch(saveUserInLS());
       
@@ -85,38 +89,51 @@ const CardsUpload = () => {
 useEffect(()=> console.log(images), [images])
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <UploadPage>
 
-        <input
+      <h1>הוסף כרטיס</h1>
+
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
+
+        {/* <input
           type="text"
           placeholder="title"
           {...register("title", { required: true })}
           onChange={handleInput}
           
+          /> */}
+          <input
+          type="text"
+          placeholder="כותרת"
+          {...register("title", { required: true })}
+          onChange={handleInput}
+          
           />
 
-        {errors.title && <span>נא להוסיף כותרת</span>}
+        {errors.title && <span className="error-span">נא להוסיף כותרת</span>}
 
         <input
-          type="text"
-          placeholder="description"
+          type="textarea"
+          placeholder="תיאור"
           {...register("description", { required: true })}
           onChange={handleInput}
           
           />
 
-        {errors.description && <span>נא להוסיף תיאור</span>}
+        {errors.description && <span className="error-span">נא להוסיף תיאור</span>}
 
         <input
           type="text"
-          placeholder="tags"
+          placeholder="תגיות"
           {...register("tags", { required: true })}
           onChange={handleInput}
           
           />
 
-        {errors.tags && <span>הוסף לפחות תגית אחת</span>}
+        {errors.tags && <span className="error-span">הוסף לפחות תגית אחת</span>}
 
+        <label className='upload-file-btn'>
+          העלה קבצים
         <input
           type="file"
           multiple
@@ -127,14 +144,19 @@ useEffect(()=> console.log(images), [images])
           
           />
 
-        {errors.images && <span>הוסף לפחות תמונה אחת</span>}
+        </label>
+        {errors.images && <span className="error-span">הוסף לפחות תמונה אחת</span>}
 
         {/* <input type="" placeholder="video" {...register("example")} /> */}
     
-    {errors.exampleRequired && <span>This field is required</span>}
     
-    <input type="submit" value="העלה כרטיס" />
-  </form>
+      <Button type="submit"> 
+        שמור כרטיס
+       </Button>
+
+  </FormContainer>
+          </UploadPage>
+
   )
 
 }

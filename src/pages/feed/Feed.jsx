@@ -31,13 +31,13 @@ const Feed = () => {
     return(
             <section className="feed">
 
-                <div className="feed-navbar">
+                {/* <div className="feed-navbar"> */}
                     <FeedNavbar tags={ applyTags().filter((value, index, self) => self.indexOf(value) === index ) } />
-                </div>
+                {/* </div> */}
 
-                <div className="feed-cards">
+                {/* <div className="feed-cards"> */}
                     <Cards cards={cards} category={_category} />
-                </div>
+                {/* </div> */}
 
             </section>
     )

@@ -1,28 +1,18 @@
 import styled from "styled-components";
 import { styled as styledMui } from "@mui/system";
-
-
 import {
         AppBar,
-        Box,
-        Toolbar,
         Button,
  } from '@mui/material'
-
- import { Link } from "react-router-dom";
 
 export const SearchBarsWrapper = styled.div`
 
     display: grid;
-    grid-template-rows: .5fr .5fr .5fr;
-    grid-template-columns: .2fr 1.2fr .2fr;
-    grid-template-areas: 
-    ". checkboxs ."
-    ". searchBar ."
-    ". . searchButton"
-     ;
+    grid-template-rows: .5fr .5fr;
+    grid-template-columns: 1.2fr .2fr;
+    grid-template-areas: "searchBar searchButton";
 
-    justify-content: center;
+    // justify-content: center;
     align-items: center;
 
     background-color: #FDEDE9;

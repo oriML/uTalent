@@ -11,8 +11,12 @@ export const StyledPage = styledMui(Paper,{
 })`
     display: flex;
     // margin-top: 1rem;
+    // flex-flow: column nowrap;
     width: 100%;
     height: 100vh;
     max-height: 100vh;
     min-height: fit-content;
+    > * {
+        width: 100%;
+    }
 `

@@ -7,13 +7,11 @@
  * from others. So interactive search experience wouldn't be necessary here
  * 
  */
-import { useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getFilteredCards } from '../../store/features/cards/cards'
 
 import * as S from './style'
-import * as GeneralStyle from '../../pages/profile/sub_cmps/buttons/style'
 
 const FeedNavbar = ({tags}) => {
 
@@ -45,12 +43,10 @@ const FeedNavbar = ({tags}) => {
         
     }
 
-    // useEffect( () => {console.log(checkboxsValues)} , [checkboxsValues ])
-
     return(
 
         <S.SearchBarsWrapper>
-            <S.Mui_CheckBoxNavBar bgColor='#00C565'>
+            {/* <S.Mui_CheckBoxNavBar bgColor='#00C565'>
                 {
                     tags.map(tag => {
                         return <label>
@@ -60,7 +56,7 @@ const FeedNavbar = ({tags}) => {
                     })
                 }
                
-            </S.Mui_CheckBoxNavBar>
+            </S.Mui_CheckBoxNavBar> */}
 
             <S.SearchNavBar bgColor='#62BAAC'>
 
