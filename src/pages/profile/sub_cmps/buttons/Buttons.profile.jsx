@@ -8,7 +8,7 @@ function ProfileButtons({user, handleExtraDetailsToggle}) {
     <S.ButtonsWrapper>
     
       <S.Mui_Button size="small" onClick={handleExtraDetailsToggle}>לחץ לפרטי התקשרות</S.Mui_Button>
-      
+      {/* <S.Mui_Button size="small" onCLick={""}>שינוי תמונת פרופיל</S.Mui_Button> */}
       <S.Mui_Button size="small">ערוך פרופיל</S.Mui_Button>
       <S.Mui_Button size="small" bcolor="#F46156">מחק פרופיל</S.Mui_Button>
     </S.ButtonsWrapper>

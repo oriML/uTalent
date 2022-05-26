@@ -42,12 +42,6 @@ export const Card = ({card}) => {
                     url => <img key={url} src={url}/>
             )
             }
-            {
-                card?.images?.map(
-                    url => <img key={url} src={url}/>
-            )
-            }
-            
 
         </S.ImagesContainer>
         
