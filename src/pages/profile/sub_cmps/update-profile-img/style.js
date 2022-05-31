@@ -7,6 +7,9 @@ export const UploadProfileImgComponent = styled.div`
         flex-direction: column;
         text-align: center;
         gap: 5px;
+        position: absolute;
+        left: 15%;
+        width: 8vw;
     }
 
     .up-btn{
@@ -14,6 +17,11 @@ export const UploadProfileImgComponent = styled.div`
         border: 1px solid grey;
         border-radius: 10px;
         background-color: cyan;
+
+        :hover{
+        background-color: indigo;
+
+        }
     }
 
     input{

@@ -17,8 +17,7 @@ import * as S from './style';
 import { StyledPage } from '../style/main';
 import ProfileDetails from './sub_cmps/details/Details.profile';
 import Table from './sub_cmps/cards-table/table/Table';
-import { FileUpload } from '../../utils/file-upload/file-upload';
-import UpdateProfileImg from './sub_cmps/update-profile-img/UpdateProfileImg';
+import { FileUpload } from '../../cmps/file-upload/file-upload';
 
 const userSelector = (state) => {
     // const userFromLocal = JSON.parse(localStorage.getItem('user'))
@@ -45,7 +44,6 @@ const Profile = () => {
 
                         <S.Mui_CardMedia>
                             <ProfileImage img={user?.profileImg} firstName={user?.firstName} />
-                            <UpdateProfileImg />
                         </S.Mui_CardMedia>
                         
                       <CardContent>

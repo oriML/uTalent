@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
 import useUser from '../../../../hooks/useUser'
-
+import UpdateProfileImg from '../update-profile-img/UpdateProfileImg'
 import * as S from './style'
 
 function ProfileImage({img, firstName}) {
@@ -17,7 +17,7 @@ function ProfileImage({img, firstName}) {
               src={img}
               alt={firstName + " profile"}
             />
-     
+      <UpdateProfileImg />
     </S.MediaCardWrapper>
   )
 }

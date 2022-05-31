@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form"
 import { uploadProfileAndRefresh } from '../../../../store/features/uploads'
+import Button from '../../../../cmps/button/Button'
 
 import * as S from './style'
 
@@ -37,7 +38,7 @@ const UpdateProfileImg = () => {
              <S.UploadProfileImgComponent className="upload-page">
 
                 <form className="upload-form-media" onSubmit={handleSubmit}>
-
+                    {/* <Button bgColor={'red'} onClick={() => console.log('click test')} text={"hello"} /> */}
                     <label className="up-btn" id="select-profile-img">
                         <span>בחר תמונה חדשה</span>
                         <input 

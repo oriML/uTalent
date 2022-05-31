@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { styled as styledMui } from "@mui/system";
 
+import { COLORS } from '../../../../utils/constants'
 
 export const MediaCardWrapper = styled.section`
     display: flex;
@@ -12,6 +13,7 @@ export const MediaCardWrapper = styled.section`
     // border-bottom: 1px solid black;
     // box-shadow: 0px 3px 5px grey;
     background: #FF9952;
+    // background: ${COLORS.PRIMARY};
 `
 
 export const Img = styled.img.attrs(props => ({
