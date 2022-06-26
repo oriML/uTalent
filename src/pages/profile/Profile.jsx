@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useSelector } from 'react-redux'
-
+import { BiUpload } from 'react-icons/bi'
 import {
     CardContent,
 } 
@@ -18,6 +18,7 @@ import { StyledPage } from '../style/main';
 import ProfileDetails from './sub_cmps/details/Details.profile';
 import Table from './sub_cmps/cards-table/table/Table';
 import { FileUpload } from '../../cmps/file-upload/file-upload';
+import Header from '../../cmps/header/Header';
 
 const userSelector = (state) => {
     // const userFromLocal = JSON.parse(localStorage.getItem('user'))
@@ -38,36 +39,26 @@ const Profile = () => {
         setToggleExtraDetailsDisplay(p => !p)
     }
         return(
+            <section>
+                <Header 
+                type='profile'
+                title={`${user?.firstName} ${user?.lastName}`}
+                content="פרופיל מתוחזק מושך יותר"
+                />
 
-    <StyledPage className="profile">
-                    <S.Mui_Card>
+                <ProfileImage img={user?.profileImg} firstName={user?.firstName} />
 
-                        <S.Mui_CardMedia>
-                            <ProfileImage img={user?.profileImg} firstName={user?.firstName} />
-                        </S.Mui_CardMedia>
-                        
-                      <CardContent>
-                        <ProfileDescription user={user} />                        
-                      </CardContent>
-
-                      <S.Mui_CardActions>
-
-                        <ProfileButtons user={user} handleExtraDetailsToggle={handleExtraDetailsToggle}/>
-                        {/* <FileUpload /> */}
-                      </S.Mui_CardActions>
-                    {
-                        !!toggleExtraDetailsDisplay && 
-                            <ProfileDetails
-                                mobile={user?.mobile}
-                                email={user?.email}
-                            />
-
-                    }                            
-                            {/* <CardsTable cards={user?.cards}/> */}
-                            <Table cards={user?.cards}/>   
-
-                    </S.Mui_Card>
-            </StyledPage>
+                <ProfileDescription user={user} />                        
+                <ProfileButtons user={user} handleExtraDetailsToggle={handleExtraDetailsToggle}/>
+                {
+                    !!toggleExtraDetailsDisplay && 
+                    <ProfileDetails
+                    mobile={user?.mobile}
+                    email={user?.email}
+                    />
+                }                            
+                <Table cards={user?.cards}/>   
+            </section>
         )    
 }
 

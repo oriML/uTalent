@@ -7,9 +7,11 @@
  * from others. So interactive search experience wouldn't be necessary here
  * 
  */
+import { InputLabel, MenuItem, Select } from '@mui/material'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getFilteredCards } from '../../store/features/cards/cards'
+import SelectInput from '../selects/select'
 
 import * as S from './style'
 
@@ -58,11 +60,24 @@ const FeedNavbar = ({tags}) => {
                
             </S.Mui_CheckBoxNavBar> */}
 
-            <S.SearchNavBar bgColor='#62BAAC'>
+            <S.SearchNavBar bgColor='#ff8000'>
 
                 <input type="search" placeholder='חפש לפי תגית, מקצוע, כישרון' onChange={handleSearchValue}/>
 
             </S.SearchNavBar>
+            
+            <div className='selects' style={{'grid-area': 'selectors'}}>
+                <select name="filter" id="filterSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <select name="sort" id="sortSelect">
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">V</option>
+                </select>
+            </div>
 
                 
             <S.Mui_Button  onClick={handleSearchInputs} />

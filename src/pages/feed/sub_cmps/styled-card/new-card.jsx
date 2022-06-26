@@ -19,7 +19,7 @@ export const NewCard = ({card}) => {
   console.log(card)
 
   return (
-    <Card sx={{ maxWidth: 300, minWidth: 255, minHeight: 155 }}>
+    <Card sx={{ maxWidth: 300, minWidth: 255, minHeight: 155, bgcolor: '#FFF8F0' }}>
       <CardHeader
         avatar={
           <Avatar 

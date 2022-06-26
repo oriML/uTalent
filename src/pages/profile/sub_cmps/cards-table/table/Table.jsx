@@ -6,11 +6,7 @@ import * as S from './style'
 function Table({cards}) {
   return (
     <S.CardsTable>
-        {
-        cards?.map(
-            card => <Card card={card} />
-        )
-        }
+        { cards?.map( card => <Card card={card} /> ) }
     </S.CardsTable>
   )
 }

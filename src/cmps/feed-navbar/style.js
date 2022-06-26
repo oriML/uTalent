@@ -8,14 +8,14 @@ import {
 export const SearchBarsWrapper = styled.div`
 
     display: grid;
-    grid-template-rows: .5fr .5fr;
-    grid-template-columns: 1.2fr .2fr;
-    grid-template-areas: "searchBar searchButton";
+    grid-template-rows: .5fr;
+    grid-template-columns: .5fr .4fr .1fr;
+    grid-template-areas: "searchBar selectors searchButton";
 
     // justify-content: center;
     align-items: center;
 
-    background-color: #FDEDE9;
+    background-color: #f2f2f2;
     border-radius: 10px;
     padding: 1rem;
     margin-bottom: 2rem;
@@ -58,12 +58,12 @@ export const SearchNavBar = styled.div`
     align-items: center;
     justify-content: center;
     width: 65%;
-    height: 25%;
+    height: 60%;
     min-height: 35px;
     border-radius: 50px;
     grid-area: searchBar;
 
-    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
+    box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 40%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 
     > input[type="search"]{
         
@@ -96,7 +96,7 @@ export const Mui_Button = styledMui(Button)`
     width: 45px;
     height: 45px;
     color: #402E32;
-    background-color: #62BAAC;
+    background-color: #ff8000;
     // border-radius: 10% 10% 50% 20%;
     border-radius: 1.5rem;
     color: #DFE0DF;
@@ -105,7 +105,7 @@ export const Mui_Button = styledMui(Button)`
     box-shadow: 0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 
     &:hover{
-        background-color: #62CAAA;
+        background-color: #ffa64d;
         color: white;
     }
     :after{

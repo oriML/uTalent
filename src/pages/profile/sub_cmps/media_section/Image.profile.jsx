@@ -11,7 +11,6 @@ function ProfileImage({img, firstName}) {
 
   return (
     <S.MediaCardWrapper>
-
             <S.Img
               key={img + new Date()}
               src={img}

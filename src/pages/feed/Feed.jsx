@@ -5,6 +5,7 @@ import { getCards } from "../../store/features/cards/cards";
 import { Cards } from "./sub_cmps/cards";
 import FeedNavbar from "../../cmps/feed-navbar/FeedNavbar";
 import { useSelector } from "react-redux";
+import { StyledFeed } from "./style";
 
 const cardsSelector = state => {
 
@@ -30,13 +31,15 @@ const Feed = () => {
 
     return(
             <section className="feed">
+                    <FeedNavbar tags={ applyTags().filter((value, index, self) => self.indexOf(value) === index ) } />
 
                 {/* <div className="feed-navbar"> */}
-                    <FeedNavbar tags={ applyTags().filter((value, index, self) => self.indexOf(value) === index ) } />
                 {/* </div> */}
 
                 {/* <div className="feed-cards"> */}
+                <StyledFeed className="cards">
                     <Cards cards={cards} category={_category} />
+                </StyledFeed>
                 {/* </div> */}
 
             </section>

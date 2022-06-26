@@ -14,14 +14,11 @@ export const UploadProfileImgComponent = styled.div`
 
     .up-btn{
         cursor: pointer;
-        border: 1px solid grey;
-        border-radius: 10px;
-        background-color: cyan;
+        // border: 1px solid grey;
+        // border-radius: 100%;
+        // width: calc(fit-content + 20px);
+        // background-color: cyan;
 
-        :hover{
-        background-color: indigo;
-
-        }
     }
 
     input{

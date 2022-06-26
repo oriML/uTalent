@@ -11,6 +11,7 @@ import { getCards } from './store/features/cards/cards';
 
 import Navbar from './cmps/navbar/Navbar';
 import Footer from './cmps/footer/Footer';
+import { StyledPage } from "./pages/style/main";
 
 import './assets/main.css';
 
@@ -34,18 +35,20 @@ const App = () => {
   return (
 
     
-      <section className="App main-layout">
-
+    <section className="App main-layout">
         <Navbar />
+      <StyledPage>
+
           <Switch>
                 {
                   routes.map(({path, component}) => <Route exact key={path} path={path} component={component} />
                   )
                 }
           </Switch>
-        <Footer />
 
-      </section>
+      </StyledPage>
+        <Footer />
+    </section>
 
   );
 }

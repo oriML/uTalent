@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Modal } from "../../../../../cmps/modal/Modal";
 import { deleteCard } from "../../../../../store/features/cards/cards";
 import EditCard from "./edit-card/EditCard";
 
@@ -8,6 +9,7 @@ import * as S from "./style";
 function Card({ card }) {
   
   const dispatch = useDispatch();
+	const [shouldShow, setShouldShow] = useState(false);
 
   const [ toggleEdit, setToggleEdit ] = useState(false);
 
@@ -24,23 +26,26 @@ function Card({ card }) {
 
   return (
     <>
-      <S.Card bg={card?.images[0]}>
-        {console.log(card)}
+      <S.Card onClick={() => setShouldShow(true)} bg={card?.images[0]}>
+        <Modal shouldShow={shouldShow} setShouldShow={setShouldShow}>
         <div className="details">{card?.description}</div>
 
-        <div className="actions">
+        { !!shouldShow && <EditCard card={card} /> }
+        {/* <div className="actions"> */}
 
-          <span className="delete" onClick={handleDelete}>
+          {/* <span className="delete" onClick={handleDelete}>
             X
           </span>
 
           <span className="edit" onClick={handleEdit}>
             E
-          </span>
+          </span> */}
 
-        </div>
+        {/* </div> */}
+
+        </Modal>
       </S.Card>
-      { !!toggleEdit && <EditCard card={card} /> }
+      {/* { !!toggleEdit && <EditCard card={card} /> } */}
     </>
   );
 }
