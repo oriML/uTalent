@@ -1,17 +1,14 @@
 import React from "react";
+import * as S from './style'
 
 const Footer = () => (
 
-    <footer 
-    className="footer full"
-    // style={{'height': '10vh'}}
-    style={{'position': 'absolute','width': '100%', 'bottom': '0', 'height': '10vh'}}
-    >
+    <S.Footer className="footer full">
         <span>
             I'm uTalent FOOTER
         </span>
 
-    </footer>
+    </S.Footer>
     
 )
     

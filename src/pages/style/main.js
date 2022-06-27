@@ -17,8 +17,9 @@ export const StyledPage = styled(Paper,{
     // flex-flow: column nowrap;
     // width: 100%;
     height: 100%;
-    max-height: 100vh;
-    min-height: 35vh;
+    position: relative;
+    // max-height: 100vh;
+    min-height: 100vh;
     padding: 1rem;
     > * {
         width: 100%;

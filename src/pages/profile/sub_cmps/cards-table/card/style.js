@@ -9,10 +9,10 @@ export const Card = styled.div`
     align-items: center;
     justify-content: end;
     flex-flow: wrap column;
-    min-width: 200px;
-    max-width: 200px;
-    min-height: 250px;
-    max-height: 450px;
+    // min-width: 200px;
+    // max-width: 200px;
+    // min-height: 250px;
+    // max-height: 450px;
     background-color: #DFE0DF;
     background-image: url(${props => props.bg});
     background-repeat: no-repeat;
