@@ -19,7 +19,9 @@ const Navbar = () => {
         <S.Mui_Navbar>
             <div className="main-layout">
                 <S.Mui_Toolbar>
-
+                {/* 
+                    if user is logged, show profile, else, don't.
+                */}
                 <S.Mui_Link to='/profile'>
                     <S.Mui_Button>
                         פרופיל

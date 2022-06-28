@@ -7,9 +7,9 @@ export const UploadProfileImgComponent = styled.div`
         flex-direction: column;
         text-align: center;
         gap: 5px;
-        position: absolute;
-        left: 15%;
-        width: 8vw;
+        // position: absolute;
+        // left: 15%;
+        // width: 8vw;
     }
 
     .up-btn{

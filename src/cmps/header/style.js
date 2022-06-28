@@ -18,7 +18,7 @@ export const Pane = styled.div`
 export const Title = styled.h2`
     margin: 10px;
     padding: 4px 0;
-    font-size: 2rem;
+    font-size: 3.5rem;
 `
 
 export const Content = styled.p`

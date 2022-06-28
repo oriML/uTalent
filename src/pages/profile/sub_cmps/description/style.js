@@ -8,23 +8,24 @@ import { Typography } from '@mui/material';
 
 
 export const Mui_Typography = styledMui(Typography,{
-    name: "StyeldTypography",
-    slot: "wrapper"
+        name: "StyeldTypography",
+        slot: "wrapper",
 })`
     font-style: italic;
-    font-size: ${({fsize}) => fsize? fsize : '1.5rem'} !important;
-    color: #524438;
-    // border: 1px #B9A89B solid;
+    font-size: ${({fsize}) => fsize? fsize : '1.5rem'} ;
+    // color: #524438;
+    border: 1px #B9A89B dotted;
     border-radius: 10px;
     // background-color: #D2732D ;
-    padding-right: 5px;
+    margin-right: 15px;
+    margin-top: 50px;
 `
 
 //////// *** Regular Styled *** ////////
 
 
-export const DetailsWrapper = styled.div`
-    & > *{
-        font-size: 1.5rem;
-    }
-`
+// export const DetailsWrapper = styled.div`
+//     & > *{
+//         // font-size: 1.5rem;
+//     }
+// `
