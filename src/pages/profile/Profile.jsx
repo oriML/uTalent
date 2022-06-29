@@ -19,6 +19,7 @@ import ProfileDetails from './sub_cmps/details/Details.profile';
 import Table from './sub_cmps/cards-table/table/Table';
 // import { FileUpload } from '../../cmps/file-upload/file-upload';
 import Header from '../../cmps/header/Header';
+import { Title } from '../../cmps/title/Title';
 
 const userSelector = (state) => {
     // const userFromLocal = JSON.parse(localStorage.getItem('user'))
@@ -62,8 +63,9 @@ const Profile = () => {
                     mobile={user?.mobile}
                     email={user?.email}
                     />
-                }                            
-                {/* <Table cards={user?.cards}/>    */}
+                }
+                <Title text='הכרטיסים שלי:'  />
+                <Table cards={user?.cards}/>   
             </section>
         )    
 }

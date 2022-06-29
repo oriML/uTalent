@@ -35,19 +35,18 @@ const App = () => {
   return (
 
     
-    <section className="App main-layout">
-        <Navbar />
-      <StyledPage>
-
+    <section className="App main-layout" style={{'height': '100vh'}}>
+      <Navbar />
+        <StyledPage>
           <Switch>
                 {
-                  routes.map(({path, component}) => <Route exact key={path} path={path} component={component} />
-                  )
+                  routes.map(({path, component}) => (
+                  <Route exact key={path} path={path} component={component} />
+                  ))
                 }
           </Switch>
-
-      </StyledPage>
-        <Footer />
+        </StyledPage>
+      <Footer />
     </section>
 
   );

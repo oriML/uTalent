@@ -28,6 +28,12 @@ body {
   direction: rtl;
   height: 100vh;
   background-color: #DFE0DF;
+
+  
+}
+
+#root{
+  height: 100%;
 }
 
 a {

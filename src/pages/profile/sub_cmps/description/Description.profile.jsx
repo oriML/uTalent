@@ -15,7 +15,10 @@ function ProfileDescription({describe}) {
 
       {/* <S.Mui_Typography variant="body2" fsize="1rem" gutterBottom > */}
         <S.Wrapper>
-          <p style={{border: '1px solid red'}}>
+          <p style={{
+            border: '1px solid transparent',
+            padding: '.5rem .8rem'            
+            }}>
             {describe}
           </p>
         </S.Wrapper>

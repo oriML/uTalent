@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
 export const Footer = styled.footer`
-        height: 10vh;
-        z-index: 10
+        z-index: 10;
+        // width: 100%;
 `
