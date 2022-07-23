@@ -3,26 +3,38 @@ import styled from 'styled-components'
 
 import { COLORS } from '../../../../utils/constants'
 
-export const MediaCardWrapper = styled.section`
+export const MediaCardWrapper = styled.div`
+
+    border: 1px solid blue;
+
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     padding: 10px;
+    gap: 10px;
+    align-items: center;
     border-radius: 10px;
-    background: #FF9952;
+    // text-indent: 10%;
+    // background: rgba(150,150,150,.05);
     // background: ${COLORS.PRIMARY};
+    > span{
+        text-align: start;
+        margin-top: 4px;
+        padding: 0;
+        text-align: start;
+        font-size: 1.8rem;
+    }
 `
 
-export const Img = styled.img.attrs(props => ({
-    src: props.src,
-    key: props.key,
-    alt: props.alt
-}))`
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
-    // border: 1px solid black;
+export const Img = styled.img`
+    // border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    // border: 1px solid rgba(0,0,0,0.2);
 `
 
-export const bgImg = styled.div`
-    background-image: url('${props => props.img}');
+export const Wrapper = styled.div`
+    background: rgba(150,150,150,.05);
+    border-radius: 10px;
+
 `

@@ -27,10 +27,12 @@ function Card({ card }) {
   return (
     <>
       <S.Card onClick={() => setShouldShow(true)} bg={card?.images[0]}>
+        <S.CardTitle>{card?.title}</S.CardTitle>
+      </S.Card>
         <Modal shouldShow={shouldShow} setShouldShow={setShouldShow}>
         <div className="details">{card?.description}</div>
-
         { !!shouldShow && <EditCard card={card} /> }
+        </Modal>
         {/* <div className="actions"> */}
 
           {/* <span className="delete" onClick={handleDelete}>
@@ -43,8 +45,6 @@ function Card({ card }) {
 
         {/* </div> */}
 
-        </Modal>
-      </S.Card>
       {/* { !!toggleEdit && <EditCard card={card} /> } */}
     </>
   );

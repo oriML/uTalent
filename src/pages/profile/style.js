@@ -56,15 +56,17 @@ export const Mui_CardMedia = styledMui(CardMedia, {
 //////// *** Regular Styled *** ////////
 
 
-export const DetailsGrid = styled.div`
-    width: 30vh;
-    height: 10vh;
-    background-color: blue;
-`
-
-export const DetailsRow = styled.div`
+export const ProfileDetailsSection = styled.div`
     
-    border: solid 1px black;
-    background-color: yellow;
+    border: 1px solid green;
+
+    display: flex;
+    // height: 50vh;
+    background-color: rgba(250,250,250,50%);
+    flex-direction: row;
+    align-items: start;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
 `
 

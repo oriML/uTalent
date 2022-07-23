@@ -28,6 +28,12 @@ body {
   direction: rtl;
   height: 100vh;
   background-color: #DFE0DF;
+
+  
+}
+
+#root{
+  height: 100%;
 }
 
 a {
@@ -117,12 +123,12 @@ a:active {
   width: 50%;
   background-color: #87dfe2;
 }
-
+/* 
 .talent-register-page .register-form {
   display: -ms-grid;
   display: grid;
   width: 10%;
-  gap: 10px;
+  gap: 10px;c
   margin-bottom: 20px;
 }
 
@@ -133,5 +139,5 @@ a:active {
 .talent-register-page .register-form input[type=submit] {
   width: 50%;
   background-color: #87dfe2;
-}
+} */
 /*# sourceMappingURL=main.css.map */
