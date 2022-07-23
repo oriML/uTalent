@@ -2,10 +2,27 @@ import { useDispatch } from "react-redux";
 import { useForm } from 'react-hook-form'
 
 import { useAuth } from '../../../hooks/useAuth'
+import { ReactComponent as RegisterSvg } from '../../../utils/svg/RegisterPageSvg.svg'
+
+import { IconWithPosition, RightComponent, StyledInputWrapper, StyledRegisterButton } from "../style";
+import { RegisterTitle } from '../style'
+import { LeftComponent } from "../style";
+import { Pane as Right } from "../style";
+import { Pane as Left } from "../style";
+import { RegisterPageContainer } from "../style";
+import { FormContainer } from "../style";
+import { StyledInput } from "../style";
+
+
+import { UserIcon } from '../../../utils/icons/'
+import { EmailIcon } from '../../../utils/icons/'
+import { PasswordIcon } from '../../../utils/icons/'
+import { MobileIcon } from '../../../utils/icons/'
+
 
 const TalentRegister = () => {
 
-    const { register, handleSubmit, watch, formState: {errors} } = useForm({ mode: 'onTouched' });
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({ mode: 'onTouched' });
     const { signUp } = useAuth();
     const dispatch = useDispatch();
 
@@ -14,169 +31,210 @@ const TalentRegister = () => {
         dispatch(signUp(data))
 
     }
-    
+
     const password = watch('password');
 
-    return(
+    return (
+        <RegisterPageContainer>
 
-        <section className="talent-register-page">
+            <Right>
+                <RightComponent className="talent-register-page">
 
-            <div className="register-header">
+                    <RegisterTitle>
+                        <span>בואו נירשם לuTalent</span>
+                        <span>!</span>
+                    </RegisterTitle>
 
-                <h1>הירשם</h1>
+                    {/* <FormContainer> */}
 
-            </div>
+                    <FormContainer className="register-form" onSubmit={handleSubmit(onSubmit)} >
 
-            <form className="register-form" onSubmit={handleSubmit(onSubmit)} >
-
-                <input
-                        type="text"
-                        {
-                            ...register("firstName",
-                            {
-                                required: true
-                            })
-                        }
-                        placeholder="שם פרטי"
-                />
-
-                {errors.username && <span>שדה חובה</span>}
-
-                <input
-                        type="text"
-                        {
-                            ...register("lastName",
-                            {
-                                required: true
-                            })
-                        }
-                        placeholder="שם משפחה"
-                />
-
-                {errors.lastname && <span>שדה חובה</span>}
-
-                <input
-                        type="text"
-                        {
-                            ...register("email",
-                            {
-                                required: true,
-                                pattern: {
-                                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                                    message: 'Email format is wrong'
+                        <StyledInputWrapper>
+                            <StyledInput
+                                type="text"
+                                {
+                                ...register("username",
+                                    {
+                                        required: true
+                                    })
                                 }
-                            })
-                        }
-                        placeholder="אימייל"
-                />
+                                placeholder="שם משתמש"
+                                icon={<UserIcon />}
+                            />
+                            <IconWithPosition>
+                                <UserIcon />
+                            </IconWithPosition>
+                        </StyledInputWrapper>
 
-                {errors.email && <span>Email is invalid</span>}
+                        {errors.username && <span>שדה חובה</span>}
 
-                <input
-                        type="password"
-                        style={{"border": errors.password?"2px solid red": "2px solid black"}}
-                        {
-                            ...register("password",
+                        {/* <StyledInput
+                            type="text"
                             {
-                                required: "Password is required",
-                                minLength: {value: 4, message: "הסיסמא חייבת לכלול 4 תווים לפחות"
+                            ...register("lastName",
+                                {
+                                    required: true
+                                })
                             }
-                            }
-                            )}
+                            placeholder="שם משפחה"
+                        />
 
-                        placeholder="סיסמא"
-                />
+                        {errors.lastname && <span>שדה חובה</span>} */}
+                        <StyledInputWrapper>
 
-                {errors.password && <span> {errors.password.message} </span>}
+                            <StyledInput
+                                type="text"
+                                {
+                                ...register("email",
+                                    {
+                                        required: true,
+                                        pattern: {
+                                            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                            message: 'פורמט האימייל שגוי'
+                                        }
+                                    })
+                                }
+                                placeholder="אימייל"
+                            />
+                            <IconWithPosition>
+                                <EmailIcon />
+                            </IconWithPosition>
+                        </StyledInputWrapper>
+                        {errors.email && <span>אימייל הוא שדה חובה</span>}
+                        <StyledInputWrapper>
 
-                <input
-                        type="password"
-                        {
-                            ...register("confirmPassword",
-                            {
-                                required: "Password is required",
-                                minLength: {
-                                    message: "הסיסמא חייבת לכלול 4 תווים לפחות"},
-                                validate: value => value === password || "הסיסמאות אינן זהות"
-                            }
-                            )}
+                            <StyledInput
+                                type="password"
+                                style={{ "border": errors.password ? "2px solid red" : "2px solid black" }}
+                                {
+                                ...register("password",
+                                    {
+                                        required: "סיסמא היא שדה חובה",
+                                        minLength: {
+                                            value: 4, message: "הסיסמא חייבת לכלול 4 תווים לפחות"
+                                        }
+                                    }
+                                )}
 
-                        placeholder="אימות סיסמא"
-                        onPaste={e => {
-                            e.preventDefault();
-                            return false;
-                        }}
-                />
+                                placeholder="סיסמא"
+                            />
+                            <IconWithPosition>
+                                <PasswordIcon />
+                            </IconWithPosition>
+                        </StyledInputWrapper>
 
-                {errors.confirmPassword && <span> {errors.confirmPassword.message} </span>}
+                        {errors.password && <span> {errors.password.message} </span>}
+                        <StyledInputWrapper>
 
-                <input
-                        type="tel"
-                        {
-                            ...register("mobile",
-                            {
-                                
-                                minLength: {
-                                    value: 10,
-                                    message: "מספר טלפון חייב להיות בן 10 ספרות"},
-                            }
-                            )}
+                            <StyledInput
+                                type="password"
+                                {
+                                ...register("confirmPassword",
+                                    {
+                                        required: "סיסמא היא שדה חובה",
+                                        minLength: {
+                                            message: "הסיסמא חייבת לכלול 4 תווים לפחות"
+                                        },
+                                        validate: value => value === password || "הסיסמאות אינן זהות"
+                                    }
+                                )}
 
-                        placeholder="מספר טלפון"
+                                placeholder="אימות סיסמא"
+                                onPaste={e => {
+                                    e.preventDefault();
+                                    return false;
+                                }}
+                            />
+                            <IconWithPosition>
+                                <PasswordIcon />
+                            </IconWithPosition>
+                        </StyledInputWrapper>
 
-                />
+                        {errors.confirmPassword && <span> {errors.confirmPassword.message} </span>}
+                        <StyledInputWrapper>
 
-                {errors.mobile && <span> {errors.mobile.message} </span>}
+                            <StyledInput
+                                type="tel"
+                                {
+                                ...register("mobile",
+                                    {
+
+                                        minLength: {
+                                            value: 10,
+                                            message: "מספר טלפון חייב להיות בן 10 ספרות"
+                                        },
+                                    }
+                                )}
+
+                                placeholder="מספר טלפון"
+
+                            />
+                            <IconWithPosition>
+                                <MobileIcon />
+                            </IconWithPosition>
+                        </StyledInputWrapper>
+                        {errors.mobile && <span> {errors.mobile.message} </span>}
+                        {/* 
+                            <StyledUploadInput>
+                                    העלה תמונת פרופיל
+                                <input
+                                    type="file"
+                                    name="תמונת פרופיל"
+                                />
+                            </StyledUploadInput>
+
+                            <StyledInput
+                                type="number"
+                                {
+                                ...register("age",
+                                    {
 
 
-                <input
-                        type="file"
-                        placeholder="תמונת פרופיל"
-                />
+                                        min: 18,
+                                        message: "הגיל חייב להיות מעל 18",
+                                    }
+                                )}
 
-                <input
-                        type="number"
-                        {
-                            ...register("age",
-                            {
-                                
-                                
-                                    min: 18,
-                                    message: "הגיל חייב להיות מעל 18",
-                            }
-                            )}
+                                placeholder="גיל"
 
-                        placeholder="גיל"
+                            />
 
-                />
+                            {errors.age && <span> {errors.age.message} </span>}
 
-                {errors.age && <span> {errors.age.message} </span>}
+                            <StyledInput
+                                type="textarea"
+                                {
+                                ...register("describe",
+                                    {
 
-                <input
-                        type="textarea"
-                        {
-                            ...register("describe",
-                            {
-                                
-                                minLength: {
-                                    value: 15,
-                                    message: "תיאור משמעותי ומושך הוא מעל 15 תווים לפחות"},
-                            }
-                            )}
+                                        minLength: {
+                                            value: 15,
+                                            message: "תיאור משמעותי ומושך הוא מעל 15 תווים לפחות"
+                                        },
+                                    }
+                                )}
 
-                        placeholder="ספק קצת מידע על עצמך!"
+                                placeholder="ספק קצת מידע על עצמך!"
 
-                />
+                            />
 
-                {errors.describe && <span> {errors.describe.message} </span>}
+                            {errors.describe && <span> {errors.describe.message} </span>} */}
 
-                <input type="submit" className="register-confirm-button" />
+                        <StyledRegisterButton type="submit" >הרשמה</StyledRegisterButton>
 
-            </form>
+                    </FormContainer>
+                    {/* </FormContainer> */}
+                </RightComponent>
+            </Right>
 
-        </section>
+            <Left>
+                <LeftComponent>
+                    <RegisterSvg />
+                </LeftComponent>
+            </Left>
+        </RegisterPageContainer >
 
-        )
+    )
 }
 
 export default TalentRegister
